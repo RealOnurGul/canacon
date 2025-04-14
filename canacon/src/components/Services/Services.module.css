@@ -1,0 +1,158 @@
+.services {
+  background-color: var(--color-light);
+  padding: 120px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.heading.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heading h2 {
+  font-size: 2.5rem;
+  color: var(--color-black);
+  margin-bottom: 15px;
+}
+
+.underline {
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-red);
+  margin: 0 auto 20px;
+}
+
+.heading p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--color-dark);
+  font-size: 1.1rem;
+}
+
+.serviceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 70px;
+}
+
+.serviceCard {
+  background-color: var(--color-white);
+  padding: 40px 30px;
+  border-radius: 2px;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.serviceCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.serviceCard:hover {
+  transform: translateY(-10px);
+}
+
+.iconContainer {
+  width: 70px;
+  height: 70px;
+  background-color: var(--color-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.serviceCard h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--color-black);
+}
+
+.serviceCard p {
+  color: var(--color-dark);
+  line-height: 1.7;
+  margin-top: auto;
+}
+
+.callToAction {
+  text-align: center;
+  background-color: var(--color-white);
+  padding: 60px;
+  border-radius: 2px;
+  box-shadow: var(--box-shadow);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.callToAction.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.callToAction h3 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: var(--color-black);
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-red);
+  transform: translateY(-3px);
+}
+
+@media screen and (max-width: 768px) {
+  .services {
+    padding: 80px 0;
+  }
+  
+  .heading h2 {
+    font-size: 2rem;
+  }
+  
+  .callToAction {
+    padding: 40px 20px;
+  }
+  
+  .callToAction h3 {
+    font-size: 1.5rem;
+  }
+} 

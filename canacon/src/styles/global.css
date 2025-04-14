@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-black: #0A0A0A;
+  --color-dark: #222222;
+  --color-light: #F5F5F5;
+  --color-white: #FFFFFF;
+  --color-red: #E63946;
+  --color-red-light: rgba(230, 57, 70, 0.8);
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Playfair Display', serif;
+  --transition: all 0.3s ease;
+  --box-shadow: 0 4px 28px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--color-red);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--color-red-light);
+}
+
+button, .btn {
+  cursor: pointer;
+  padding: 12px 28px;
+  border: none;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  outline: none;
+}
+
+button:hover, .btn:hover {
+  background: var(--color-red);
+  transform: translateY(-2px);
+}
+
+section {
+  padding: 100px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    padding: 70px 0;
+  }
+} 
