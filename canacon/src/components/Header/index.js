@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.css";
+import logoImage from "../../assets/images/canacon_logo.png";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
@@ -58,7 +59,7 @@ const Header = () => {
           to="/"
           className={styles.logo}
         >
-          <span className={styles.logoText}>CANACON <span className={styles.logoAccent}>MEDIA</span></span>
+          <img src={logoImage} alt="Canacon Media" className={styles.logoImage} />
         </RouterLink>
         
         <div 

@@ -1,151 +1,132 @@
-import React, { useState, useEffect, useRef } from "react";
-import styles from "./Portfolio.module.css";
+import React, { useState } from 'react';
+import styles from './Portfolio.module.css';
 
 const Portfolio = () => {
-  const [activeTab, setActiveTab] = useState("all");
-  const [isVisible, setIsVisible] = useState({
-    heading: false,
-    tabs: false,
-    projects: false
-  });
+  const [filter, setFilter] = useState('all');
   
-  const sectionRef = useRef(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(prev => ({ ...prev, heading: true })), 100);
-          setTimeout(() => setIsVisible(prev => ({ ...prev, tabs: true })), 300);
-          setTimeout(() => setIsVisible(prev => ({ ...prev, projects: true })), 500);
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Redesign",
-      category: "web",
-      description: "Complete redesign and development of an e-commerce platform with focus on user experience and conversion optimization.",
+      title: "E-commerce Website Redesign",
+      category: "web-design",
+      image: "/images/portfolio/project1.jpg",
+      client: "Fashion Retailer",
+      description: "Complete redesign of an e-commerce platform resulting in 45% increase in conversion rate.",
+      link: "#"
     },
     {
       id: 2,
-      title: "Data Visualization Dashboard",
-      category: "data",
-      description: "Interactive dashboard for real-time data analysis, featuring complex visualizations and automated reporting.",
+      title: "SEO Campaign",
+      category: "digital-marketing",
+      image: "/images/portfolio/project2.jpg",
+      client: "Software Company",
+      description: "Comprehensive SEO strategy that increased organic traffic by 200% in 6 months.",
+      link: "#"
     },
     {
       id: 3,
-      title: "Corporate Website",
-      category: "web",
-      description: "Modern, responsive website with custom CMS integration for a Fortune 500 company.",
+      title: "Social Media Campaign",
+      category: "social-media",
+      image: "/images/portfolio/project3.jpg",
+      client: "Wellness Brand",
+      description: "Strategic social media campaign that grew following by 150% and engagement by 300%.",
+      link: "#"
     },
     {
       id: 4,
-      title: "SEO Strategy Implementation",
-      category: "seo",
-      description: "Comprehensive SEO strategy resulting in 250% increase in organic traffic and improved SERP rankings.",
+      title: "Mobile App Development",
+      category: "app-development",
+      image: "/images/portfolio/project4.jpg",
+      client: "Fitness Startup",
+      description: "Custom mobile application with integrated payment system and user analytics.",
+      link: "#"
     },
     {
       id: 5,
-      title: "Frontend Architecture Audit",
-      category: "consulting",
-      description: "In-depth analysis and optimization of frontend architecture for a high-traffic web application.",
+      title: "Content Marketing Strategy",
+      category: "digital-marketing",
+      image: "/images/portfolio/project5.jpg",
+      client: "Financial Services",
+      description: "Content strategy that positioned the client as an industry thought leader.",
+      link: "#"
     },
     {
       id: 6,
-      title: "Microdata Implementation",
-      category: "seo",
-      description: "Strategic implementation of structured data to enhance search visibility and rich snippet performance.",
+      title: "Email Marketing Campaign",
+      category: "digital-marketing",
+      image: "/images/portfolio/project6.jpg",
+      client: "Travel Agency",
+      description: "Email sequence that achieved 35% open rate and 12% conversion rate.",
+      link: "#"
     }
   ];
-
-  const filterProjects = () => {
-    if (activeTab === "all") {
-      return projects;
-    }
-    return projects.filter(project => project.category === activeTab);
-  };
-
-  const filteredProjects = filterProjects();
-
+  
+  const categories = [
+    { id: 'all', name: 'All Projects' },
+    { id: 'web-design', name: 'Web Design' },
+    { id: 'digital-marketing', name: 'Digital Marketing' },
+    { id: 'social-media', name: 'Social Media' },
+    { id: 'app-development', name: 'App Development' }
+  ];
+  
+  const filteredProjects = filter === 'all' 
+    ? projects 
+    : projects.filter(project => project.category === filter);
+  
   return (
-    <section className={styles.portfolio} itemScope itemType="https://schema.org/Organization" ref={sectionRef}>
+    <section className={styles.portfolio} id="portfolio">
       <div className={styles.container}>
-        <div
-          className={`${styles.heading} ${isVisible.heading ? styles.visible : ""}`}
-        >
-          <h2 itemProp="name">Case Studies</h2>
-          <div className={styles.underline}></div>
-          <p>Explore our portfolio of successful client projects and transformations.</p>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionTag}>Our Work</span>
+          <h2 className={styles.sectionTitle}>Recent Projects</h2>
+          <p className={styles.sectionDescription}>
+            Take a look at some of our recent projects that showcase our expertise 
+            and the results we deliver for our clients.
+          </p>
         </div>
-
-        <div
-          className={`${styles.tabs} ${isVisible.tabs ? styles.visible : ""}`}
-        >
-          <button 
-            className={`${styles.tab} ${activeTab === "all" ? styles.active : ""}`}
-            onClick={() => setActiveTab("all")}
-          >
-            All
-          </button>
-          <button 
-            className={`${styles.tab} ${activeTab === "web" ? styles.active : ""}`}
-            onClick={() => setActiveTab("web")}
-          >
-            Web Development
-          </button>
-          <button 
-            className={`${styles.tab} ${activeTab === "data" ? styles.active : ""}`}
-            onClick={() => setActiveTab("data")}
-          >
-            Data
-          </button>
-          <button 
-            className={`${styles.tab} ${activeTab === "seo" ? styles.active : ""}`}
-            onClick={() => setActiveTab("seo")}
-          >
-            SEO
-          </button>
-          <button 
-            className={`${styles.tab} ${activeTab === "consulting" ? styles.active : ""}`}
-            onClick={() => setActiveTab("consulting")}
-          >
-            Consulting
-          </button>
-        </div>
-
-        <div className={styles.projectGrid}>
-          {filteredProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`${styles.projectCard} ${isVisible.projects ? styles.visible : ""}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
-              itemScope 
-              itemType="https://schema.org/CreativeWork"
+        
+        <div className={styles.filterButtons}>
+          {categories.map(category => (
+            <button 
+              key={category.id}
+              className={`${styles.filterBtn} ${filter === category.id ? styles.activeFilter : ''}`}
+              onClick={() => setFilter(category.id)}
             >
-              <div className={styles.projectImage}></div>
-              <div className={styles.projectContent}>
-                <h3 itemProp="name">{project.title}</h3>
-                <p itemProp="description">{project.description}</p>
-                <a href="#" className={styles.viewProject}>View Case Study</a>
+              {category.name}
+            </button>
+          ))}
+        </div>
+        
+        <div className={styles.projectsGrid}>
+          {filteredProjects.map(project => (
+            <div key={project.id} className={styles.projectCard}>
+              <div className={styles.projectImage}>
+                <img src={project.image} alt={project.title} />
+                <div className={styles.projectOverlay}>
+                  <a href={project.link} className={styles.projectLink}>
+                    View Project
+                  </a>
+                </div>
+              </div>
+              <div className={styles.projectInfo}>
+                <span className={styles.projectCategory}>
+                  {categories.find(c => c.id === project.category)?.name}
+                </span>
+                <h3 className={styles.projectTitle}>{project.title}</h3>
+                <p className={styles.projectDescription}>{project.description}</p>
+                <div className={styles.projectClient}>
+                  <span className={styles.clientLabel}>Client:</span>
+                  <span className={styles.clientName}>{project.client}</span>
+                </div>
               </div>
             </div>
           ))}
+        </div>
+        
+        <div className={styles.ctaContainer}>
+          <a href="/contact" className={styles.ctaButton}>
+            Start Your Project
+          </a>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 .portfolio {
+  padding: 100px 0;
   background-color: var(--color-white);
-  padding: 120px 0;
 }
 
 .container {
@@ -9,170 +9,239 @@
   padding: 0 20px;
 }
 
-.heading {
+.sectionHeader {
   text-align: center;
   margin-bottom: 50px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.heading.visible {
-  opacity: 1;
-  transform: translateY(0);
+.sectionTag {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
-.heading h2 {
-  font-size: 2.5rem;
-  color: var(--color-black);
-  margin-bottom: 15px;
+.sectionTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: 20px;
 }
 
-.underline {
-  width: 60px;
-  height: 3px;
-  background-color: var(--color-red);
-  margin: 0 auto 20px;
-}
-
-.heading p {
+.sectionDescription {
+  font-size: 18px;
+  color: var(--color-text);
   max-width: 700px;
   margin: 0 auto;
-  color: var(--color-dark);
-  font-size: 1.1rem;
 }
 
-.tabs {
+.filterButtons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.tabs.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.tab {
-  padding: 8px 20px;
-  background-color: var(--color-light);
-  border: none;
+.filterBtn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 30px;
+  color: var(--color-text);
   cursor: pointer;
-  font-family: var(--font-primary);
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: var(--transition);
-  color: var(--color-dark);
+  transition: all 0.3s ease;
 }
 
-.tab:hover {
-  background-color: var(--color-black);
+.filterBtn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.activeFilter {
+  background-color: var(--color-primary);
   color: var(--color-white);
+  border-color: var(--color-primary);
 }
 
-.tab.active {
-  background-color: var(--color-black);
-  color: var(--color-white);
-}
-
-.projectGrid {
+.projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  margin-bottom: 60px;
 }
 
 .projectCard {
-  background-color: var(--color-white);
-  box-shadow: var(--box-shadow);
+  border-radius: 8px;
   overflow: hidden;
-  transition: var(--transition);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.projectCard.visible {
-  opacity: 1;
-  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .projectCard:hover {
   transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .projectImage {
+  position: relative;
   height: 220px;
-  background-color: var(--color-light);
-  position: relative;
+  overflow: hidden;
 }
 
-.projectContent {
-  padding: 25px;
-}
-
-.projectContent h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: var(--color-black);
-}
-
-.projectContent p {
-  font-size: 0.95rem;
-  color: var(--color-dark);
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.viewProject {
-  display: inline-block;
-  color: var(--color-black);
-  font-weight: 600;
-  font-size: 0.9rem;
-  position: relative;
-}
-
-.viewProject::after {
-  content: '';
-  position: absolute;
+.projectImage img {
   width: 100%;
-  height: 2px;
-  bottom: -4px;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.projectCard:hover .projectImage img {
+  transform: scale(1.1);
+}
+
+.projectOverlay {
+  position: absolute;
+  top: 0;
   left: 0;
-  background-color: var(--color-red);
-  transform: scaleX(0);
-  transform-origin: right;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projectCard:hover .projectOverlay {
+  opacity: 1;
+}
+
+.projectLink {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transform: translateY(20px);
   transition: transform 0.3s ease;
 }
 
-.viewProject:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.projectCard:hover .projectLink {
+  transform: translateY(0);
 }
 
-@media screen and (max-width: 768px) {
+.projectInfo {
+  padding: 25px;
+  background-color: var(--color-white);
+}
+
+.projectCategory {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.projectTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: 10px;
+}
+
+.projectDescription {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 15px;
+}
+
+.projectClient {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-light);
+}
+
+.clientLabel {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.ctaContainer {
+  text-align: center;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .sectionTitle {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
   .portfolio {
     padding: 80px 0;
   }
   
-  .heading h2 {
-    font-size: 2rem;
+  .sectionDescription {
+    font-size: 16px;
   }
   
-  .projectGrid {
+  .filterButtons {
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .filterBtn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio {
+    padding: 60px 0;
+  }
+  
+  .projectsGrid {
     grid-template-columns: 1fr;
   }
   
-  .tabs {
-    gap: 5px;
-  }
-  
-  .tab {
-    padding: 6px 12px;
-    font-size: 0.8rem;
+  .sectionTitle {
+    font-size: 28px;
   }
 } 

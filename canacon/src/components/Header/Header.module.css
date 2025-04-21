@@ -6,9 +6,9 @@
   z-index: 1000;
   transition: all 0.3s ease;
   padding: 1.5rem 0;
-  background-color: #8B0000; /* Dark red for better contrast */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background-color: white; /* Changed from dark red to white */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .scrolled {
@@ -36,20 +36,31 @@
   z-index: 20;
 }
 
+.logoImage {
+  height: 60px; /* Increased from 40px */
+  width: auto;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.scrolled .logoImage {
+  height: 50px; /* Increased from 35px */
+}
+
 .logoText {
   font-family: var(--font-secondary);
   font-size: 1.5rem;
   font-weight: 800;
-  color: #ffffff !important; /* Force white color with !important */
+  color: var(--color-black) !important; /* Changed from white to black */
   letter-spacing: -0.02em;
   position: relative;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
+  text-shadow: none; /* Removed shadow */
 }
 
 .logoAccent {
-  color: #ffffff !important; /* Force white color with !important */
+  color: var(--color-red) !important; /* Changed from white to red */
   font-weight: 800;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
+  text-shadow: none; /* Removed shadow */
 }
 
 .scrolled .logoText {
@@ -68,7 +79,7 @@
   top: 0;
   width: 8px;
   height: 8px;
-  background: #ffffff;
+  background: var(--color-red); /* Changed from white to red */
   border-radius: 50%;
   transform: translateX(100%);
 }
@@ -97,15 +108,15 @@
 .navLink {
   font-family: var(--font-secondary);
   font-size: 0.95rem;
-  font-weight: 700; /* Bolder text */
-  color: #ffffff !important; /* Force white color with !important */
+  font-weight: 700;
+  color: var(--color-black) !important; /* Changed from white to black */
   transition: color 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
   cursor: pointer;
   text-decoration: none;
   letter-spacing: 0.02em;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
+  text-shadow: none; /* Removed shadow */
 }
 
 .scrolled .navLink {
@@ -115,7 +126,7 @@
 
 .navLink:hover, 
 .navLink.active {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-red) !important; /* Changed from white to red */
 }
 
 .scrolled .navLink:hover,
@@ -129,7 +140,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #ffffff;
+  background-color: var(--color-red); /* Changed from white to red */
   transition: width 0.3s ease;
 }
 
@@ -148,8 +159,8 @@
 
 .contactButton {
   position: relative;
-  background: white;
-  color: var(--color-red) !important;
+  background: var(--color-red); /* Changed from white to red */
+  color: white !important; /* Changed from red to white */
   padding: 0.75rem 1.5rem !important;
   border-radius: 4px !important;
   font-size: 0.95rem !important;
@@ -160,7 +171,7 @@
 }
 
 .contactButton:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--color-red-hover); /* Changed hover effect */
 }
 
 .scrolled .contactButton {
@@ -186,7 +197,7 @@
   display: block;
   height: 2px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--color-black); /* Changed from white to black */
   transition: all 0.3s ease;
 }
 

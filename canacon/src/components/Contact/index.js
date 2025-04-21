@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Contact.module.css";
-import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
-import { FiTwitter, FiInstagram, FiFacebook } from "react-icons/fi";
+import { FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { FiTwitter, FiInstagram, FiFacebook, FiLinkedin } from "react-icons/fi";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -61,32 +61,42 @@ const Contact = () => {
     e.preventDefault();
     
     try {
-      setFormStatus({
-        submitted: true,
-        error: false,
-        message: "Thanks for your message! We'll be in touch soon."
-      });
-      
       // Form validation
       if (!formData.name || !formData.email || !formData.message) {
         setFormStatus({
           submitted: true,
           error: true,
-          message: "Please fill in all fields."
+          message: "Please fill in all required fields."
         });
         return;
       }
 
-      // In a real application, you would send this data to a server
-      console.log("Form submitted:", formData);
-      
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
+      // Send form data to Formspree
+      const response = await fetch("https://formspree.io/f/your-formspree-id", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
       });
+
+      if (response.ok) {
+        setFormStatus({
+          submitted: true,
+          error: false,
+          message: "Thanks for your message! We'll be in touch soon."
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        });
+      } else {
+        throw new Error("Form submission failed");
+      }
       
     } catch (error) {
       setFormStatus({
@@ -99,33 +109,60 @@ const Contact = () => {
 
   return (
     <section className={styles.contact} id="contact" ref={sectionRef}>
+      <div className={styles.backgroundDecoration}></div>
       <div className={styles.container}>
         <div
           className={`${styles.heading} ${isVisible.heading ? styles.visible : ""}`}
         >
-          <h2>Contact Us</h2>
+          <span className={styles.sectionLabel}>Get in Touch</span>
+          <h2 className={styles.title}>Contact Us</h2>
           <div className={styles.underline}></div>
-          <p>Our team looks forward to hearing from you!</p>
+          <p className={styles.subtitle}>Have a question or want to work with us? We'd love to hear from you.</p>
         </div>
 
         <div className={styles.contactContent}>
           <div
             className={`${styles.contactInfo} ${isVisible.contactInfo ? styles.visible : ""}`}
           >
-            <div className={styles.infoItem}>
-              <div className={styles.socialLinks}>
-                <a href="#" className={styles.socialIcon}>
-                  <FiFacebook />
-                </a>
-                <a href="#" className={styles.socialIcon}>
-                  <FiTwitter />
-                </a>
-                <a href="#" className={styles.socialIcon}>
-                  <FiInstagram />
-                </a>
-                <a href="#" className={styles.socialIcon}>
-                  <FaEnvelope />
-                </a>
+            <div className={styles.infoCards}>
+              <div className={styles.infoCard}>
+                <div className={styles.infoIcon}>
+                  <FaPhone />
+                </div>
+                <h3 className={styles.infoTitle}>Phone</h3>
+                <p className={styles.infoText}>
+                  <a href="tel:+1234567890">(123) 456-7890</a>
+                </p>
+                <p className={styles.infoText}>Mon-Fri, 9am-5pm</p>
+              </div>
+              
+              <div className={styles.infoCard}>
+                <div className={styles.infoIcon}>
+                  <FaMapMarkerAlt />
+                </div>
+                <h3 className={styles.infoTitle}>Office</h3>
+                <p className={styles.infoText}>
+                  123 Web Agency Street<br />
+                  San Francisco, CA 94107
+                </p>
+              </div>
+              
+              <div className={styles.socialContainer}>
+                <h3 className={styles.socialTitle}>Connect With Us</h3>
+                <div className={styles.socialLinks}>
+                  <a href="#" className={styles.socialIcon} aria-label="Facebook">
+                    <FiFacebook />
+                  </a>
+                  <a href="#" className={styles.socialIcon} aria-label="Twitter">
+                    <FiTwitter />
+                  </a>
+                  <a href="#" className={styles.socialIcon} aria-label="Instagram">
+                    <FiInstagram />
+                  </a>
+                  <a href="#" className={styles.socialIcon} aria-label="LinkedIn">
+                    <FiLinkedin />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -133,74 +170,84 @@ const Contact = () => {
           <div
             className={`${styles.contactForm} ${isVisible.contactForm ? styles.visible : ""}`}
           >
-            {formStatus.submitted && !formStatus.error ? (
-              <div className={styles.successMessage}>
-                <h3>{formStatus.message}</h3>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="name">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
+            <div className={styles.formCard}>
+              <h3 className={styles.formTitle}>Send us a message</h3>
+              
+              {formStatus.submitted && !formStatus.error ? (
+                <div className={styles.successMessage}>
+                  <div className={styles.successIcon}>✓</div>
+                  <h3>{formStatus.message}</h3>
+                  <p>We appreciate you contacting us and will respond shortly.</p>
                 </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="subject">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                  />
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                </div>
-                
-                {formStatus.error && (
-                  <div className={styles.errorMessage}>
-                    <p>{formStatus.message}</p>
+              ) : (
+                <form onSubmit={handleSubmit} className={styles.formContent}>
+                  <div className={styles.formGrid}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="name">Your Name *</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="John Doe"
+                        required
+                      />
+                    </div>
+                    
+                    <div className={styles.formGroup}>
+                      <label htmlFor="email">Your Email *</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="john@example.com"
+                        required
+                      />
+                    </div>
                   </div>
-                )}
-                
-                <button type="submit" className={styles.submitButton}>Send Message</button>
-              </form>
-            )}
+                  
+                  <div className={styles.formGroup}>
+                    <label htmlFor="subject">Subject</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="How can we help you?"
+                    />
+                  </div>
+                  
+                  <div className={styles.formGroup}>
+                    <label htmlFor="message">Message *</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows="5"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Your message here..."
+                      required
+                    ></textarea>
+                  </div>
+                  
+                  {formStatus.error && (
+                    <div className={styles.errorMessage}>
+                      <p>{formStatus.message}</p>
+                    </div>
+                  )}
+                  
+                  <button type="submit" className={styles.submitButton}>
+                    Send Message
+                    <span className={styles.buttonIcon}>→</span>
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
-        </div>
-        
-        <div className={styles.footer}>
-          <p>© 2025 Canacon Media</p>
-          <p>Design by Canacon</p>
         </div>
       </div>
     </section>

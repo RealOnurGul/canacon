@@ -1,60 +1,60 @@
-import React from "react";
-import styles from "./About.module.css";
-import { HiOutlineDesktopComputer, HiOutlineCog, HiOutlineLightningBolt } from "react-icons/hi";
+import React from 'react';
+import styles from './About.module.css';
 
 const About = () => {
   return (
-    <section id="about" className={styles.about}>
-      <div className="container">
-        <h2 className={styles.sectionTitle}>The leading team of digital craftsmen</h2>
-        
-        <div className={styles.grid}>
-          <div className={styles.mainContent}>
-            <p className={styles.leadText}>
-              For over a decade, we've been at the forefront of web development, 
-              delivering cutting-edge solutions that transform businesses and elevate brands.
+    <section className={styles.about} id="about">
+      <div className={styles.container}>
+        <div className={styles.aboutContent}>
+          <div className={styles.aboutImage}>
+            <div className={styles.imageWrapper}>
+              <img src="/images/about/team.jpg" alt="Our Team" />
+            </div>
+            <div className={styles.experience}>
+              <span className={styles.experienceNumber}>10+</span>
+              <span className={styles.experienceText}>Years<br/>Experience</span>
+            </div>
+          </div>
+          
+          <div className={styles.aboutInfo}>
+            <span className={styles.sectionTag}>About Us</span>
+            <h2 className={styles.sectionTitle}>We're a Digital Agency With a Passion for Results</h2>
+            <p className={styles.aboutDescription}>
+              At Canacon Media, we believe in delivering measurable results through data-driven 
+              marketing strategies. Our team combines creativity with analytical thinking to help 
+              businesses grow their digital presence and achieve their marketing goals.
             </p>
             
-            <p className={styles.bodyText}>
-              Our team combines technical excellence with creative vision to build digital 
-              experiences that not only look exceptional but drive measurable results. 
-              We're obsessed with performance, accessibility, and creating memorable user journeys.
-            </p>
-          </div>
-        </div>
-        
-        <div className={styles.cardsContainer}>
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>
-              <HiOutlineDesktopComputer aria-hidden="true" />
+            <div className={styles.aboutStats}>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>500+</span>
+                <span className={styles.statLabel}>Happy Clients</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>650+</span>
+                <span className={styles.statLabel}>Projects Completed</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.statNumber}>15+</span>
+                <span className={styles.statLabel}>Team Members</span>
+              </div>
             </div>
-            <h3>Expert Development</h3>
-            <p>
-              We build powerful, scalable web applications using the latest technologies 
-              and frameworks. Our code is clean, maintainable, and optimized for performance.
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>
-              <HiOutlineCog aria-hidden="true" />
+            
+            <div className={styles.aboutValues}>
+              <div className={styles.valueItem}>
+                <h3 className={styles.valueTitle}>Our Mission</h3>
+                <p className={styles.valueText}>
+                  To empower businesses with innovative digital solutions that drive growth and deliver exceptional ROI.
+                </p>
+              </div>
+              
+              <div className={styles.valueItem}>
+                <h3 className={styles.valueTitle}>Our Vision</h3>
+                <p className={styles.valueText}>
+                  To be the leading digital marketing agency known for creativity, reliability, and measurable results.
+                </p>
+              </div>
             </div>
-            <h3>Strategic Planning</h3>
-            <p>
-              We don't just build websites; we create digital strategies that align with 
-              your business goals and provide measurable ROI through thoughtful implementation.
-            </p>
-          </div>
-
-          <div className={styles.card}>
-            <div className={styles.cardIcon}>
-              <HiOutlineLightningBolt aria-hidden="true" />
-            </div>
-            <h3>Powerful Optimization</h3>
-            <p>
-              We obsess over speed, accessibility, and conversion. Our optimization services 
-              ensure your digital products perform flawlessly across all devices and platforms.
-            </p>
           </div>
         </div>
       </div>
