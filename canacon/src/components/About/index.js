@@ -1,84 +1,60 @@
-import React, { useEffect, useState, useRef } from 'react';
-import styles from './About.module.css';
+import React from "react";
+import styles from "./About.module.css";
+import { HiOutlineDesktopComputer, HiOutlineCog, HiOutlineLightningBolt } from "react-icons/hi";
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState({
-    heading: false,
-    text: false,
-    image: false,
-    values: false
-  });
-  
-  const sectionRef = useRef(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Add slight delays to create a sequential animation effect
-          setTimeout(() => setIsVisible(prev => ({ ...prev, heading: true })), 100);
-          setTimeout(() => setIsVisible(prev => ({ ...prev, text: true })), 300);
-          setTimeout(() => setIsVisible(prev => ({ ...prev, image: true })), 500);
-          setTimeout(() => setIsVisible(prev => ({ ...prev, values: true })), 700);
-          
-          // Unobserve once elements are visible
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section className={styles.about} ref={sectionRef}>
-      <div className={styles.container}>
-        <div className={`${styles.heading} ${isVisible.heading ? styles.visible : ''}`}>
-          <h2>About Canacon X</h2>
-          <div className={styles.underline}></div>
-        </div>
+    <section id="about" className={styles.about}>
+      <div className="container">
+        <h2 className={styles.sectionTitle}>The leading team of digital craftsmen</h2>
         
-        <div className={styles.content}>
-          <div className={`${styles.text} ${isVisible.text ? styles.visible : ''}`}>
-            <h3>Who We Are</h3>
-            <p>
-              Canacon X is a modern consulting firm specializing in high-end web development and 
-              micro data insights. We bridge the gap between advanced technology and practical 
-              business applications, delivering solutions that are both innovative and effective.
+        <div className={styles.grid}>
+          <div className={styles.mainContent}>
+            <p className={styles.leadText}>
+              For over a decade, we've been at the forefront of web development, 
+              delivering cutting-edge solutions that transform businesses and elevate brands.
             </p>
-            <p>
-              Founded by a team of industry experts, we combine deep technical knowledge with 
-              strategic thinking to transform digital experiences and drive measurable results.
+            
+            <p className={styles.bodyText}>
+              Our team combines technical excellence with creative vision to build digital 
+              experiences that not only look exceptional but drive measurable results. 
+              We're obsessed with performance, accessibility, and creating memorable user journeys.
             </p>
-          </div>
-          
-          <div className={`${styles.imageContainer} ${isVisible.image ? styles.visible : ''}`}>
-            <div className={styles.image}></div>
           </div>
         </div>
         
-        <div className={`${styles.values} ${isVisible.values ? styles.visible : ''}`}>
-          <div className={styles.valueItem}>
-            <h4>Innovation</h4>
-            <p>We pursue cutting-edge solutions that push boundaries and create new possibilities.</p>
+        <div className={styles.cardsContainer}>
+          <div className={styles.card}>
+            <div className={styles.cardIcon}>
+              <HiOutlineDesktopComputer aria-hidden="true" />
+            </div>
+            <h3>Expert Development</h3>
+            <p>
+              We build powerful, scalable web applications using the latest technologies 
+              and frameworks. Our code is clean, maintainable, and optimized for performance.
+            </p>
           </div>
-          
-          <div className={styles.valueItem}>
-            <h4>Precision</h4>
-            <p>We believe in meticulous attention to detail and data-driven decision making.</p>
+
+          <div className={styles.card}>
+            <div className={styles.cardIcon}>
+              <HiOutlineCog aria-hidden="true" />
+            </div>
+            <h3>Strategic Planning</h3>
+            <p>
+              We don't just build websites; we create digital strategies that align with 
+              your business goals and provide measurable ROI through thoughtful implementation.
+            </p>
           </div>
-          
-          <div className={styles.valueItem}>
-            <h4>Partnership</h4>
-            <p>We form deep collaborations with our clients, becoming an extension of their team.</p>
+
+          <div className={styles.card}>
+            <div className={styles.cardIcon}>
+              <HiOutlineLightningBolt aria-hidden="true" />
+            </div>
+            <h3>Powerful Optimization</h3>
+            <p>
+              We obsess over speed, accessibility, and conversion. Our optimization services 
+              ensure your digital products perform flawlessly across all devices and platforms.
+            </p>
           </div>
         </div>
       </div>

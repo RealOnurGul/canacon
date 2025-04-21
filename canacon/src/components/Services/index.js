@@ -37,39 +37,51 @@ const Services = () => {
   const services = [
     {
       id: 1,
-      title: 'Web Development',
-      description: 'Custom web applications built with cutting-edge technologies. We craft seamless, responsive, and high-performance digital experiences that align with your business goals.',
-      icon: '🔧'
+      title: 'SEO',
+      description: 'Increase your webpage ranking with link building, domain authority optimization, sitemaps, on-page optimization, blog writing, and more.',
+      icon: '🔍'
     },
     {
       id: 2,
-      title: 'SEO & Micro Data Optimization',
-      description: 'Enhance your digital presence with strategic SEO and structured data implementations that improve visibility and drive targeted traffic to your platforms.',
-      icon: '📊'
+      title: 'Web Development',
+      description: 'We create world-class websites — from static pages to fully fledged e-commerce platforms, we deliver websites that elevate your business.',
+      icon: '💻'
     },
     {
       id: 3,
-      title: 'Frontend Architecture Consulting',
-      description: 'Expert guidance on frontend architecture, component design, and technology stack decisions. We help teams build scalable, maintainable codebases.',
-      icon: '🏗️'
+      title: 'Digital Advertising',
+      description: 'We offer comprehensive pay-per-click (PPC) management and advertising on all major digital platforms. We ensure your business reaches the right consumer.',
+      icon: '📱'
     },
     {
       id: 4,
-      title: 'UX/UI Audits',
-      description: 'Comprehensive analysis of your user experience and interface design. We identify friction points and opportunities for improvement to enhance user engagement.',
-      icon: '🔍'
+      title: 'Social Media Marketing',
+      description: 'The bread and butter of today\'s digital world. We help grow your brand on social media and convert leads into customers. Our team stays on top of the latest trends to keep you ahead of the competition.',
+      icon: '📣'
+    },
+    {
+      id: 5,
+      title: 'Email Marketing',
+      description: 'Our advanced and creative email marketing strategies help you build relationships with customers, boost brand exposure, and drive sales. We analyze your industry and target audience to craft the right content.',
+      icon: '📧'
+    },
+    {
+      id: 6,
+      title: 'Growth Strategy',
+      description: 'We analyze and act on your data. Canacon Media understands your ideal audience and focuses on maximizing your ROI. Our services make your brand stand out, and growing your digital footprint is one of our core strengths.',
+      icon: '📈'
     }
   ];
 
   return (
-    <section className={styles.services} ref={sectionRef}>
+    <section className={styles.services} ref={sectionRef} id="services">
       <div className={styles.container}>
         <div
           className={`${styles.heading} ${isVisible.heading ? styles.visible : ''}`}
         >
-          <h2>Our Services</h2>
+          <h2>What We Do</h2>
           <div className={styles.underline}></div>
-          <p>We combine technical expertise with strategic thinking to deliver solutions that drive results.</p>
+          <p>We offer all digital media essentials. We aim to meet every client's needs — if you have a specific service in mind, let us know and we'll find the right solution for you.</p>
         </div>
 
         <div className={styles.serviceGrid}>
@@ -91,8 +103,12 @@ const Services = () => {
         <div
           className={`${styles.callToAction} ${isVisible.cta ? styles.visible : ''}`}
         >
-          <h3>Ready to transform your digital presence?</h3>
-          <a href="#contact" className={styles.button}>Get Started</a>
+          <h3>Ready to grow your business and increase your sales?</h3>
+          <p>Digital marketing is now vital to running a successful and profitable business. We take the time to understand your products and services and then execute a custom digital content strategy tailored to your business goals.</p>
+          <div className={styles.ctaButtons}>
+            <a href="#contact" className={styles.button}>CONTACT US</a>
+            <a href="#about" className={styles.buttonAlt}>LEARN MORE</a>
+          </div>
         </div>
       </div>
     </section>

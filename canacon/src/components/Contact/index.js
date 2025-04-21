@@ -1,16 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styles from './Contact.module.css';
+import React, { useState, useEffect, useRef } from "react";
+import styles from "./Contact.module.css";
+import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { FiTwitter, FiInstagram, FiFacebook } from "react-icons/fi";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
   });
   
   const [formStatus, setFormStatus] = useState({
     submitted: false,
-    error: false
+    error: false,
+    message: ""
   });
 
   const [isVisible, setIsVisible] = useState({
@@ -47,104 +51,96 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Form validation
-    if (!formData.name || !formData.email || !formData.message) {
+    
+    try {
       setFormStatus({
         submitted: true,
-        error: true
+        error: false,
+        message: "Thanks for your message! We'll be in touch soon."
       });
-      return;
-    }
+      
+      // Form validation
+      if (!formData.name || !formData.email || !formData.message) {
+        setFormStatus({
+          submitted: true,
+          error: true,
+          message: "Please fill in all fields."
+        });
+        return;
+      }
 
-    // In a real application, you would send this data to a server
-    console.log('Form submitted:', formData);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
-    
-    // Show success message
-    setFormStatus({
-      submitted: true,
-      error: false
-    });
-    
-    // Reset status after 3 seconds
-    setTimeout(() => {
-      setFormStatus({
-        submitted: false,
-        error: false
+      // In a real application, you would send this data to a server
+      console.log("Form submitted:", formData);
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
       });
-    }, 3000);
+      
+    } catch (error) {
+      setFormStatus({
+        submitted: true,
+        error: true,
+        message: "Something went wrong. Please try again later."
+      });
+    }
   };
 
   return (
-    <section className={styles.contact} itemScope itemType="https://schema.org/Organization" ref={sectionRef}>
+    <section className={styles.contact} id="contact" ref={sectionRef}>
       <div className={styles.container}>
         <div
-          className={`${styles.heading} ${isVisible.heading ? styles.visible : ''}`}
+          className={`${styles.heading} ${isVisible.heading ? styles.visible : ""}`}
         >
           <h2>Contact Us</h2>
           <div className={styles.underline}></div>
-          <p>Ready to start your next project? Reach out to our team today.</p>
+          <p>Our team looks forward to hearing from you!</p>
         </div>
 
         <div className={styles.contactContent}>
           <div
-            className={`${styles.contactInfo} ${isVisible.contactInfo ? styles.visible : ''}`}
+            className={`${styles.contactInfo} ${isVisible.contactInfo ? styles.visible : ""}`}
           >
             <div className={styles.infoItem}>
-              <h3>Get in Touch</h3>
-              <p>
-                We're always looking for new challenges and opportunities to create exceptional digital experiences.
-              </p>
-              <p>
-                Whether you have a specific project in mind or just want to explore possibilities, we'd love to hear from you.
-              </p>
-            </div>
-            
-            <div className={styles.infoItem}>
-              <h4>Our Office</h4>
-              <address itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                <p itemProp="streetAddress">123 Innovation Way</p>
-                <p>
-                  <span itemProp="addressLocality">San Francisco</span>, 
-                  <span itemProp="addressRegion">CA</span> 
-                  <span itemProp="postalCode">94103</span>
-                </p>
-              </address>
-            </div>
-            
-            <div className={styles.infoItem}>
-              <h4>Contact Details</h4>
-              <p>Email: <a href="mailto:info@canaconx.com" itemProp="email">info@canaconx.com</a></p>
-              <p>Phone: <a href="tel:+14155552671" itemProp="telephone">(415) 555-2671</a></p>
+              <div className={styles.socialLinks}>
+                <a href="#" className={styles.socialIcon}>
+                  <FiFacebook />
+                </a>
+                <a href="#" className={styles.socialIcon}>
+                  <FiTwitter />
+                </a>
+                <a href="#" className={styles.socialIcon}>
+                  <FiInstagram />
+                </a>
+                <a href="#" className={styles.socialIcon}>
+                  <FaEnvelope />
+                </a>
+              </div>
             </div>
           </div>
 
           <div
-            className={`${styles.contactForm} ${isVisible.contactForm ? styles.visible : ''}`}
+            className={`${styles.contactForm} ${isVisible.contactForm ? styles.visible : ""}`}
           >
             {formStatus.submitted && !formStatus.error ? (
               <div className={styles.successMessage}>
-                <h3>Thank you for your message!</h3>
-                <p>We'll get back to you as soon as possible.</p>
+                <h3>{formStatus.message}</h3>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
-                  <label htmlFor="name">Name</label>
+                  <label htmlFor="name">Your Name</label>
                   <input
                     type="text"
                     id="name"
@@ -156,7 +152,7 @@ const Contact = () => {
                 </div>
                 
                 <div className={styles.formGroup}>
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">Your Email</label>
                   <input
                     type="email"
                     id="email"
@@ -164,6 +160,17 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                  />
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label htmlFor="subject">Subject</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                   />
                 </div>
                 
@@ -181,7 +188,7 @@ const Contact = () => {
                 
                 {formStatus.error && (
                   <div className={styles.errorMessage}>
-                    <p>Please fill in all fields.</p>
+                    <p>{formStatus.message}</p>
                   </div>
                 )}
                 
@@ -189,6 +196,11 @@ const Contact = () => {
               </form>
             )}
           </div>
+        </div>
+        
+        <div className={styles.footer}>
+          <p>© 2025 Canacon Media</p>
+          <p>Design by Canacon</p>
         </div>
       </div>
     </section>
