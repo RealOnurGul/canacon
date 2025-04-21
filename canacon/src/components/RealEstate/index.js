@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import styles from './RealEstate.module.css';
 
 const RealEstate = () => {
@@ -16,13 +16,16 @@ const RealEstate = () => {
       });
     }, { threshold: 0.2 });
     
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    // Store current ref value to avoid issues in cleanup
+    const currentRef = sectionRef.current;
+    
+    if (currentRef) {
+      observer.observe(currentRef);
     }
     
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -48,11 +51,7 @@ const RealEstate = () => {
             </div>
           </div>
           <Link 
-            to="contact" 
-            spy={true} 
-            smooth={true} 
-            offset={-70} 
-            duration={500} 
+            to="/contact" 
             className={styles.button}
           >
             DISCOVER MORE

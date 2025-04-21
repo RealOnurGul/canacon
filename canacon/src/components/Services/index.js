@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Services.module.css';
 
 const Services = () => {
@@ -11,25 +11,33 @@ const Services = () => {
   const sectionRef = useRef(null);
   
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
+    const handleIntersection = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(prev => ({ ...prev, heading: true })), 100);
-          setTimeout(() => setIsVisible(prev => ({ ...prev, cards: true })), 300);
-          setTimeout(() => setIsVisible(prev => ({ ...prev, cta: true })), 700);
+          // Stagger the animations but with reduced delays
+          setTimeout(() => setIsVisible(prev => ({ ...prev, heading: true })), 0);
+          setTimeout(() => setIsVisible(prev => ({ ...prev, cards: true })), 100);
+          setTimeout(() => setIsVisible(prev => ({ ...prev, cta: true })), 200);
           
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    };
     
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px"
+    });
+    
+    const currentRef = sectionRef.current;
+    
+    if (currentRef) {
+      observer.observe(currentRef);
     }
     
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -89,7 +97,7 @@ const Services = () => {
             <div
               key={service.id}
               className={`${styles.serviceCard} ${isVisible.cards ? styles.visible : ''}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
+              style={{ transitionDelay: `${index * 0.05}s` }}
             >
               <div className={styles.iconContainer}>
                 <span className={styles.icon}>{service.icon}</span>
@@ -106,7 +114,7 @@ const Services = () => {
           <h3>Ready to grow your business and increase your sales?</h3>
           <p>Digital marketing is now vital to running a successful and profitable business. We take the time to understand your products and services and then execute a custom digital content strategy tailored to your business goals.</p>
           <div className={styles.ctaButtons}>
-            <a href="#contact" className={styles.button}>CONTACT US</a>
+            <a href="/contact" className={styles.button}>CONTACT US</a>
             <a href="#about" className={styles.buttonAlt}>LEARN MORE</a>
           </div>
         </div>

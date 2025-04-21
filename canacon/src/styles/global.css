@@ -1,3 +1,6 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
 /* Global CSS Variables */
 :root {
   /* Colors */
@@ -6,10 +9,23 @@
   --color-dark: #555555;
   --color-light: #f9f9f9;
   --color-red: #dc2626;
+  --color-red-light: rgba(220, 38, 38, 0.1);
+  --color-red-hover: #b91c1c;
+  --color-gray-100: #f7fafc;
+  --color-gray-200: #edf2f7;
+  --color-gray-300: #e2e8f0;
+  --color-gray-400: #cbd5e0;
+  --color-gray-500: #a0aec0;
   
   /* Typography */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --font-secondary: 'Montserrat', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
   
   /* Spacing */
   --space-1: 0.25rem;
@@ -30,6 +46,7 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-red: 0 10px 15px -3px rgba(220, 38, 38, 0.2);
   
   /* Border Radius */
   --radius-sm: 0.125rem;
@@ -39,8 +56,12 @@
   --radius-2xl: 1rem;
   --radius-3xl: 1.5rem;
   
-  /* Misc */
+  /* Transitions */
   --transition: 0.3s ease;
+  --transition-fast: 0.2s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Other */
   --container-xl: 1200px;
   --header-height: 80px;
 }
@@ -58,7 +79,8 @@ html {
 
 body {
   font-family: var(--font-primary);
-  line-height: 1.5;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
   color: var(--color-black);
   background-color: var(--color-white);
   -webkit-font-smoothing: antialiased;
@@ -67,6 +89,33 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: color var(--transition);
+}
+
+/* Default hover animation for links */
+a:not(.no-animation):not([class*='navLink']):after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-red);
+  transition: width var(--transition);
+}
+
+a:not(.no-animation):not([class*='navLink']):hover:after {
+  width: 100%;
+}
+
+a:hover {
+  color: var(--color-red);
+}
+
+/* Make an exception for header links */
+header a:hover {
   color: inherit;
 }
 
@@ -80,16 +129,63 @@ img {
 }
 
 button, input, textarea {
-  font-family: inherit;
+  font-family: var(--font-primary);
+}
+
+button {
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
 }
 
 section {
-  padding: 80px 0;
+  padding: 100px 0;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
   line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: var(--font-weight-extrabold);
+}
+
+h2 {
+  font-size: 2.5rem;
+  position: relative;
+}
+
+h2.styled:after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-red);
+  bottom: -15px;
+  left: 0;
+}
+
+h2.styled.centered:after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.35rem;
+}
+
+p {
+  margin-bottom: 1rem;
 }
 
 /* Container */
@@ -103,6 +199,79 @@ h1, h2, h3, h4, h5, h6 {
 /* Utility Classes */
 .text-center {
   text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-red {
+  color: var(--color-red);
+}
+
+.bg-red {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.bg-light {
+  background-color: var(--color-light);
+}
+
+.bg-white {
+  background-color: var(--color-white);
+}
+
+.font-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.font-secondary {
+  font-family: var(--font-secondary);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.letter-spacing {
+  letter-spacing: 1px;
+}
+
+.rounded {
+  border-radius: var(--radius-md);
+}
+
+.shadow {
+  box-shadow: var(--box-shadow);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-red {
+  box-shadow: var(--shadow-red);
+}
+
+.transition {
+  transition: var(--transition);
 }
 
 .mt-0 { margin-top: 0; }
@@ -123,6 +292,12 @@ h1, h2, h3, h4, h5, h6 {
 .py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
 .py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
 
+.px-0 { padding-left: 0; padding-right: 0; }
+.px-1 { padding-left: var(--space-1); padding-right: var(--space-1); }
+.px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+
 .hidden {
   display: none;
 }
@@ -135,8 +310,20 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .items-center {
   align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .justify-center {
@@ -147,14 +334,52 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .gap-1 { gap: var(--space-1); }
 .gap-2 { gap: var(--space-2); }
 .gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
 
 /* Mobile Responsiveness */
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 992px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  section {
+    padding: 80px 0;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --header-height: 70px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
   }
   
   section {
@@ -165,5 +390,13 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 480px) {
   section {
     padding: 40px 0;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
   }
 } 

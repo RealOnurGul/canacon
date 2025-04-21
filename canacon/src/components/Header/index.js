@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-scroll";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsActive(!isActive);
@@ -27,6 +27,9 @@ const Header = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Initial check for page refresh
+    handleScroll();
+    
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -51,16 +54,12 @@ const Header = () => {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
-        <Link
-          to="home"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
+        <RouterLink
+          to="/"
           className={styles.logo}
         >
-          <span className={styles.logoText}>CANACON MEDIA</span>
-        </Link>
+          <span className={styles.logoText}>CANACON <span className={styles.logoAccent}>MEDIA</span></span>
+        </RouterLink>
         
         <div 
           className={`${styles.hamburger} ${isActive ? styles.active : ""}`} 
@@ -75,65 +74,53 @@ const Header = () => {
         <nav className={`${styles.nav} ${isActive ? styles.active : ""}`}>
           <ul className={styles.navList}>
             <li>
-              <Link 
-                to="home" 
-                spy={true} 
-                smooth={true} 
-                offset={-70} 
-                duration={500} 
-                activeClass={styles.active}
+              <RouterLink 
+                to="/" 
+                className={`${styles.navLink} ${location.pathname === '/' ? styles.active : ''}`}
                 onClick={() => setIsActive(false)}
               >
                 Home
-              </Link>
+                <span className={styles.linkHighlight}></span>
+              </RouterLink>
             </li>
             <li>
-              <Link 
-                to="realestate" 
-                spy={true} 
-                smooth={true} 
-                offset={-70} 
-                duration={500} 
-                activeClass={styles.active}
+              <RouterLink 
+                to="/realestate" 
+                className={`${styles.navLink} ${location.pathname === '/realestate' ? styles.active : ''}`}
                 onClick={() => setIsActive(false)}
               >
                 Real Estate
-              </Link>
+                <span className={styles.linkHighlight}></span>
+              </RouterLink>
             </li>
             <li>
-              <Link 
-                to="startups" 
-                spy={true} 
-                smooth={true} 
-                offset={-70} 
-                duration={500} 
-                activeClass={styles.active}
+              <RouterLink 
+                to="/startups" 
+                className={`${styles.navLink} ${location.pathname === '/startups' ? styles.active : ''}`}
                 onClick={() => setIsActive(false)}
               >
                 Start-ups
-              </Link>
+                <span className={styles.linkHighlight}></span>
+              </RouterLink>
             </li>
             <li>
               <RouterLink 
                 to="/blog" 
-                className={styles.navLink}
+                className={`${styles.navLink} ${location.pathname === '/blog' ? styles.active : ''}`}
                 onClick={() => setIsActive(false)}
               >
                 Blog
+                <span className={styles.linkHighlight}></span>
               </RouterLink>
             </li>
             <li className={styles.navAction}>
-              <Link 
-                to="contact" 
-                spy={true} 
-                smooth={true} 
-                offset={-70} 
-                duration={500} 
+              <RouterLink 
+                to="/contact" 
                 className={styles.contactButton}
                 onClick={() => setIsActive(false)}
               >
                 Contact
-              </Link>
+              </RouterLink>
             </li>
           </ul>
         </nav>
