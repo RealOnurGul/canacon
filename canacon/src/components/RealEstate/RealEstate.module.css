@@ -70,11 +70,14 @@
   transition: var(--transition);
   text-transform: uppercase;
   cursor: pointer;
+  text-decoration: none !important;
 }
 
 .button:hover {
   background-color: var(--color-red);
   transform: translateY(-3px);
+  color: var(--color-white) !important;
+  text-decoration: none !important;
 }
 
 .image {

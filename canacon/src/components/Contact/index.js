@@ -38,13 +38,15 @@ const Contact = () => {
       });
     }, { threshold: 0.1 });
     
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    
+    if (currentRef) {
+      observer.observe(currentRef);
     }
     
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -71,8 +73,8 @@ const Contact = () => {
         return;
       }
 
-      // Send form data to Formspree
-      const response = await fetch("https://formspree.io/f/your-formspree-id", {
+      // Send form data to Formspree - using a working endpoint
+      const response = await fetch("https://formspree.io/f/xdoqoayw", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -131,9 +133,8 @@ const Contact = () => {
                 </div>
                 <h3 className={styles.infoTitle}>Phone</h3>
                 <p className={styles.infoText}>
-                  <a href="tel:+1234567890">(123) 456-7890</a>
+                  <a href="tel:+1234567890">(604) 562-2408</a>
                 </p>
-                <p className={styles.infoText}>Mon-Fri, 9am-5pm</p>
               </div>
               
               <div className={styles.infoCard}>
@@ -142,24 +143,24 @@ const Contact = () => {
                 </div>
                 <h3 className={styles.infoTitle}>Office</h3>
                 <p className={styles.infoText}>
-                  123 Web Agency Street<br />
-                  San Francisco, CA 94107
+                  123 Business Avenue<br />
+                  Vancouver, BC V1A 2B3
                 </p>
               </div>
               
               <div className={styles.socialContainer}>
                 <h3 className={styles.socialTitle}>Connect With Us</h3>
                 <div className={styles.socialLinks}>
-                  <a href="#" className={styles.socialIcon} aria-label="Facebook">
+                  <a href="https://facebook.com" className={styles.socialIcon} aria-label="Facebook">
                     <FiFacebook />
                   </a>
-                  <a href="#" className={styles.socialIcon} aria-label="Twitter">
+                  <a href="https://twitter.com" className={styles.socialIcon} aria-label="Twitter">
                     <FiTwitter />
                   </a>
-                  <a href="#" className={styles.socialIcon} aria-label="Instagram">
+                  <a href="https://instagram.com" className={styles.socialIcon} aria-label="Instagram">
                     <FiInstagram />
                   </a>
-                  <a href="#" className={styles.socialIcon} aria-label="LinkedIn">
+                  <a href="https://linkedin.com" className={styles.socialIcon} aria-label="LinkedIn">
                     <FiLinkedin />
                   </a>
                 </div>

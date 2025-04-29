@@ -1,0 +1,352 @@
+.calculatorPage {
+  min-height: 100vh;
+  background-color: var(--color-white);
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  height: 50vh;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80');
+  background-size: cover;
+  background-position: center;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.heroContent.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: var(--color-white) !important;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--color-white) !important;
+}
+
+/* Calculator Section */
+.calculatorSection {
+  padding: 100px 0;
+  position: relative;
+  background-color: var(--color-white);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.calculatorContent {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.calculatorContent.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.calculatorCard {
+  background-color: white;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calculatorTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--color-black);
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.calculatorTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-red);
+}
+
+.calculatorForm {
+  margin-top: 40px;
+}
+
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--color-black);
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1);
+}
+
+.calculateButton {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: var(--color-red);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 30px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calculateButton:hover {
+  background-color: var(--color-red-hover);
+  transform: translateY(-2px);
+}
+
+.resultCard {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.resultTitle {
+  font-size: 1.2rem;
+  color: var(--color-black);
+  margin-bottom: 15px;
+}
+
+.resultAmount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-red);
+  margin-bottom: 10px;
+}
+
+.resultNote {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.calculatorNote {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* FAQ Section */
+.faqSection {
+  padding: 100px 0;
+  background-color: var(--color-light);
+}
+
+.faqContent {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.faqContent.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.faqTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: var(--color-black);
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.faqTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-red);
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.faqItem {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.faqQuestion {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--color-black);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.faqQuestion::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-red);
+}
+
+.faqAnswer {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.3rem;
+  }
+  
+  .calculatorCard {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+  }
+  
+  .calculatorSection,
+  .faqSection {
+    padding: 70px 0;
+  }
+  
+  .calculatorTitle,
+  .faqTitle {
+    font-size: 2rem;
+  }
+  
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .calculatorCard {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .calculatorSection,
+  .faqSection {
+    padding: 50px 0;
+  }
+  
+  .calculatorTitle,
+  .faqTitle {
+    font-size: 1.8rem;
+  }
+  
+  .calculatorCard {
+    padding: 20px;
+  }
+  
+  .resultAmount {
+    font-size: 2rem;
+  }
+} 

@@ -9,6 +9,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BlogPage from "./components/BlogPage";
 import BlogPost from "./pages/BlogPost";
+import RealEstatePage from "./pages/RealEstate";
+import ContactPage from "./pages/Contact";
+import CommissionCalculator from "./pages/CommissionCalculator";
 import "./styles/global.css";
 
 function App() {
@@ -42,6 +45,9 @@ function App() {
         } />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/realestate" element={<RealEstatePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/commission-calculator" element={<CommissionCalculator />} />
       </Routes>
       
       <Footer />

@@ -97,20 +97,20 @@ a {
   transition: color var(--transition);
 }
 
-/* Default hover animation for links */
+/* Default hover animation for links - DISABLED */
 a:not(.no-animation):not([class*='navLink']):after {
   content: '';
   position: absolute;
   width: 0;
-  height: 2px;
+  height: 0; /* Changed from 2px to 0 to remove underline */
   bottom: -4px;
   left: 0;
-  background-color: var(--color-red);
+  background-color: transparent; /* Changed from var(--color-red) to transparent */
   transition: width var(--transition);
 }
 
 a:not(.no-animation):not([class*='navLink']):hover:after {
-  width: 100%;
+  width: 0; /* Changed from 100% to 0 to prevent animation */
 }
 
 a:hover {
@@ -403,4 +403,48 @@ p {
   h2 {
     font-size: 1.5rem;
   }
+}
+
+/* Fix for button hover states site-wide */
+a.Hero_secondaryButton__bdsAo:hover,
+a.Hero_primaryButton__bdsAo:hover,
+a.RealEstate_button__GhhtQ:hover,
+a.Startups_button__tD0mB:hover,
+a.Contact_socialIcon__ET1Ut:hover,
+a.Footer_socialIcon__\\+HSoA:hover {
+  color: var(--color-white) !important;
+  text-decoration: none !important;
+}
+
+a.Hero_secondaryButton__bdsAo:hover *,
+a.Hero_primaryButton__bdsAo:hover *,
+a.RealEstate_button__GhhtQ:hover *,
+a.Startups_button__tD0mB:hover *,
+a.Contact_socialIcon__ET1Ut:hover *,
+a.Footer_socialIcon__\\+HSoA:hover * {
+  color: var(--color-white) !important;
+  stroke: var(--color-white) !important;
+  fill: transparent !important;
+  font-weight: normal !important;
+}
+
+/* Target specific elements that need fixes */
+.Hero_secondaryButton__bdsAo:after,
+.Hero_primaryButton__bdsAo:after,
+.Contact_socialIcon__ET1Ut:after,
+.Footer_socialIcon__\\+HSoA:after {
+  display: none !important;
+}
+
+/* Remove underlines from all links */
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+a:after {
+  display: none !important;
 } 

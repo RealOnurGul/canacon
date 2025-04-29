@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import { FiFacebook, FiTwitter, FiInstagram } from "react-icons/fi";
-import { FaEnvelope } from "react-icons/fa";
+import { FiFacebook, FiTwitter, FiInstagram, FiLinkedin } from "react-icons/fi";
 
 const Footer = () => {
   return (
@@ -13,17 +12,17 @@ const Footer = () => {
         </div>
         
         <div className={styles.social}>
-          <a href="#" className={styles.socialIcon} aria-label="Facebook">
+          <a href="https://facebook.com" className={styles.socialIcon} aria-label="Facebook">
             <FiFacebook />
           </a>
-          <a href="#" className={styles.socialIcon} aria-label="Twitter">
+          <a href="https://twitter.com" className={styles.socialIcon} aria-label="Twitter">
             <FiTwitter />
           </a>
-          <a href="#" className={styles.socialIcon} aria-label="Instagram">
+          <a href="https://instagram.com" className={styles.socialIcon} aria-label="Instagram">
             <FiInstagram />
           </a>
-          <a href="#" className={styles.socialIcon} aria-label="Email">
-            <FaEnvelope />
+          <a href="https://linkedin.com" className={styles.socialIcon} aria-label="LinkedIn">
+            <FiLinkedin />
           </a>
         </div>
       </div>

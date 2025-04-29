@@ -5,7 +5,7 @@ import styles from './RealEstate.module.css';
 const RealEstate = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -15,14 +15,14 @@ const RealEstate = () => {
         }
       });
     }, { threshold: 0.2 });
-    
+
     // Store current ref value to avoid issues in cleanup
     const currentRef = sectionRef.current;
-    
+
     if (currentRef) {
       observer.observe(currentRef);
     }
-    
+
     return () => {
       if (currentRef) {
         observer.unobserve(currentRef);
@@ -50,10 +50,7 @@ const RealEstate = () => {
               <p>Tailored marketing strategies to help listings sell fast</p>
             </div>
           </div>
-          <Link 
-            to="/contact" 
-            className={styles.button}
-          >
+          <Link to="/realestate" className={styles.button}>
             DISCOVER MORE
           </Link>
         </div>

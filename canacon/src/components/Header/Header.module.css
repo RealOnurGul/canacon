@@ -3,16 +3,18 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--header-height);
   z-index: 1000;
   transition: all 0.3s ease;
-  padding: 1.5rem 0;
-  background-color: white; /* Changed from dark red to white */
+  background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0 3rem;
+  box-sizing: border-box;
 }
 
 .scrolled {
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -28,6 +30,17 @@
   padding: 0 1.5rem;
 }
 
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -36,31 +49,35 @@
   z-index: 20;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
 .logoImage {
-  height: 60px; /* Increased from 40px */
+  height: 170px;
   width: auto;
   transition: all 0.3s ease;
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
 }
 
 .scrolled .logoImage {
-  height: 50px; /* Increased from 35px */
+  height: 170px;
 }
 
 .logoText {
   font-family: var(--font-secondary);
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--color-black) !important; /* Changed from white to black */
+  color: var(--color-black) !important;
   letter-spacing: -0.02em;
   position: relative;
-  text-shadow: none; /* Removed shadow */
 }
 
 .logoAccent {
-  color: var(--color-red) !important; /* Changed from white to red */
+  color: var(--color-red) !important;
   font-weight: 800;
-  text-shadow: none; /* Removed shadow */
 }
 
 .scrolled .logoText {
@@ -69,7 +86,6 @@
 
 .scrolled .logoAccent {
   color: var(--color-red);
-  font-size: 1.375rem;
 }
 
 .logoText::after {
@@ -79,59 +95,54 @@
   top: 0;
   width: 8px;
   height: 8px;
-  background: var(--color-red); /* Changed from white to red */
+  background: var(--color-red);
   border-radius: 50%;
   transform: translateX(100%);
-}
-
-.scrolled .logoText::after {
-  background: var(--color-red);
 }
 
 .nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
 }
 
 .navList {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 2rem;
   margin: 0;
   padding: 0;
 }
 
 .navList li {
   position: relative;
+  white-space: nowrap;
 }
 
 .navLink {
   font-family: var(--font-secondary);
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--color-black) !important; /* Changed from white to black */
+  color: var(--color-black) !important;
   transition: color 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
   cursor: pointer;
   text-decoration: none;
   letter-spacing: 0.02em;
-  text-shadow: none; /* Removed shadow */
-}
-
-.scrolled .navLink {
-  color: var(--color-black) !important;
-  text-shadow: none;
+  display: block;
 }
 
 .navLink:hover, 
 .navLink.active {
-  color: var(--color-red) !important; /* Changed from white to red */
-}
-
-.scrolled .navLink:hover,
-.scrolled .navLink.active {
-  color: var(--color-red);
+  color: var(--color-red) !important;
 }
 
 .linkHighlight {
@@ -140,12 +151,8 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--color-red); /* Changed from white to red */
-  transition: width 0.3s ease;
-}
-
-.scrolled .linkHighlight {
   background-color: var(--color-red);
+  transition: width 0.3s ease;
 }
 
 .navLink:hover .linkHighlight,
@@ -158,29 +165,20 @@
 }
 
 .contactButton {
-  position: relative;
-  background: var(--color-red); /* Changed from white to red */
-  color: white !important; /* Changed from red to white */
-  padding: 0.75rem 1.5rem !important;
-  border-radius: 4px !important;
-  font-size: 0.95rem !important;
-  font-weight: 600 !important;
-  transition: background-color 0.3s ease !important;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  background: var(--color-red);
+  color: white !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .contactButton:hover {
-  background: var(--color-red-hover); /* Changed hover effect */
-}
-
-.scrolled .contactButton {
-  background: var(--color-red);
-  color: white !important;
-}
-
-.scrolled .contactButton:hover {
   background: var(--color-red-hover);
+  transform: translateY(-2px);
 }
 
 .hamburger {
@@ -197,12 +195,8 @@
   display: block;
   height: 2px;
   width: 100%;
-  background-color: var(--color-black); /* Changed from white to black */
-  transition: all 0.3s ease;
-}
-
-.scrolled .hamburger span {
   background-color: var(--color-black);
+  transition: all 0.3s ease;
 }
 
 .hamburger.active span:nth-child(1) {
@@ -221,17 +215,29 @@
 
 @media (max-width: 1024px) {
   .navList {
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
   
   .logoText {
     font-size: 1.4rem;
   }
+  
+  .logoImage {
+    height: 55px;
+  }
+  
+  .scrolled .logoImage {
+    height: 50px;
+  }
+  
+  .navLink {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
+  .header {
+    padding: 0 1.5rem;
   }
   
   .hamburger {
@@ -262,17 +268,20 @@
     width: 100%;
   }
   
+  .navItems {
+    margin-right: 0;
+    width: 100%;
+  }
+  
   .navLink {
     font-size: 1.1rem;
     padding: 0.5rem 0;
     display: block;
     width: 100%;
-    color: var(--color-black);
   }
   
   .linkHighlight {
     bottom: 0;
-    background-color: var(--color-red);
   }
   
   .navAction {
@@ -286,7 +295,63 @@
     text-align: center;
     width: 100%;
     padding: 0.75rem !important;
-    background: var(--color-red);
-    color: white !important;
   }
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 220px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+  padding: 8px 0;
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dropdown:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  display: block;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-black) !important;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(220, 38, 38, 0.08);
+  color: var(--color-red) !important;
+}
+
+/* Dropdown caret indicator */
+.navLink.hasDropdown::after {
+  content: '▼';
+  font-size: 0.6rem;
+  margin-left: 5px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+  vertical-align: middle;
+}
+
+.dropdown:hover .navLink.hasDropdown::after {
+  transform: rotate(180deg);
 } 
