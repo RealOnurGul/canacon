@@ -8,7 +8,7 @@ const Footer = () => {
       <div className={styles.container}>
         <div className={styles.copyright}>
           <p>2025 © Canacon Media</p>
-          <p>Design by Canacon</p>
+          <p>Designed by Canacon</p>
         </div>
         
         <div className={styles.social}>
