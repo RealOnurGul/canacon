@@ -1,6 +1,6 @@
 .calculatorPage {
   min-height: 100vh;
-  background-color: var(--color-white);
+  background-color: #f7f7f7;
 }
 
 /* Hero Section */
@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80');
+  background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1773&q=80');
   background-size: cover;
   background-position: center;
   color: var(--color-white);
@@ -62,7 +62,7 @@
 .calculatorSection {
   padding: 100px 0;
   position: relative;
-  background-color: var(--color-white);
+  background-color: #f7f7f7;
 }
 
 .container {
@@ -89,14 +89,28 @@
   border-radius: 15px;
   padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.calculatorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.calculatorLogo {
+  width: 150px;
+  margin-bottom: 20px;
 }
 
 .calculatorTitle {
   font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: var(--color-black);
   text-align: center;
   position: relative;
@@ -114,12 +128,69 @@
   background-color: var(--color-red);
 }
 
+.templateButtons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 15px;
+}
+
+.templateButton {
+  background-color: var(--color-light);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.templateButton:hover {
+  background-color: #e9e9e9;
+  transform: translateY(-2px);
+}
+
+.resetButton {
+  width: 100%;
+  background-color: var(--color-red);
+  border: none;
+  border-radius: 8px;
+  padding: 15px 20px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.resetButton:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(220, 38, 38, 0.25);
+}
+
 .calculatorForm {
-  margin-top: 40px;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 .formGroup {
-  margin-bottom: 25px;
+  position: relative;
+  margin-bottom: 15px;
 }
 
 .formGroup label {
@@ -130,72 +201,224 @@
   color: var(--color-black);
 }
 
-.formGroup input {
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
   width: 100%;
-  padding: 15px;
-  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 1.1rem;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.formGroup input:focus {
-  outline: none;
+.inputWrapper:focus-within {
   border-color: var(--color-red);
   box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1);
 }
 
-.calculateButton {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  background-color: var(--color-red);
-  color: white;
-  border: none;
-  border-radius: 8px;
+.currencySymbol {
+  position: absolute;
+  left: 15px;
+  color: #666;
   font-size: 1.1rem;
   font-weight: 600;
-  margin: 30px 0;
-  cursor: pointer;
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 15px 15px 15px 35px;
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.inputWrapper input:focus {
+  outline: none;
+}
+
+.formSplitRow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroupSplit {
+  position: relative;
+}
+
+.formGroupSplit label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--color-black);
+}
+
+.splitInputs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.inputWrapperSmall {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: auto;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.calculateButton:hover {
-  background-color: var(--color-red-hover);
-  transform: translateY(-2px);
+.inputWrapperSmall:focus-within {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1);
 }
 
-.resultCard {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 25px;
-  text-align: center;
-  margin-bottom: 20px;
+.inputWrapperSmall input {
+  width: 80%;
+  padding: 10px 8px;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  text-align: right;
+  color: #333;
 }
 
-.resultTitle {
-  font-size: 1.2rem;
-  color: var(--color-black);
-  margin-bottom: 15px;
+.inputWrapperSmall input:focus {
+  outline: none;
 }
 
-.resultAmount {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-red);
-  margin-bottom: 10px;
-}
-
-.resultNote {
-  font-size: 0.9rem;
+.percentSymbol {
+  padding-right: 10px;
   color: #666;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.splitText {
+  font-size: 0.95rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px 5px 0;
+  border-style: solid;
+  border-color: #333 transparent transparent;
+}
+
+.formGroup:hover .tooltip,
+.formGroupSplit:hover .tooltip {
+  opacity: 0.9;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.resultsSection {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.resultsTitle {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.resultsTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-red);
+}
+
+.resultItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.resultItem:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.resultLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.resultValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.finalResult {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #ddd;
+}
+
+.finalResult .resultLabel {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.finalResult .resultValue {
+  font-size: 1.3rem;
+  color: var(--color-red);
 }
 
 .calculatorNote {
-  font-size: 0.9rem;
-  color: #666;
+  margin-top: 30px;
   text-align: center;
-  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #777;
+  padding: 0 20px;
 }
 
 /* FAQ Section */
@@ -293,6 +516,16 @@
   .calculatorCard {
     padding: 30px;
   }
+  
+  .calculatorForm {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .formSplitRow {
+    flex-direction: column;
+    gap: 25px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -321,6 +554,11 @@
   .calculatorCard {
     padding: 25px;
   }
+  
+  .formGroup label,
+  .formGroupSplit label {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -346,7 +584,279 @@
     padding: 20px;
   }
   
-  .resultAmount {
-    font-size: 2rem;
+  .templateButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .inputWrapper input,
+  .inputWrapperSmall input {
+    font-size: 1rem;
+    padding: 12px;
+  }
+  
+  .formSplitRow {
+    gap: 20px;
+  }
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.calculateButton {
+  flex: 1;
+  background-color: var(--color-red);
+  border: none;
+  border-radius: 8px;
+  padding: 15px 20px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+}
+
+.calculateButton:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(220, 38, 38, 0.25);
+}
+
+/* Help Button */
+.helpButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.helpButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.helpModal {
+  background-color: white;
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  padding: 30px;
+  position: relative;
+  animation: slideIn 0.4s ease;
+}
+
+.closeModalButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 1;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.closeModalButton:hover {
+  background-color: var(--color-red);
+  color: white;
+}
+
+.helpTitle {
+  font-size: 1.8rem;
+  color: var(--color-black);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.helpSubtitle {
+  color: #444;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.helpSectionTitle {
+  font-size: 1.3rem;
+  color: var(--color-black);
+  margin: 25px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.helpSteps {
+  padding-left: 20px;
+}
+
+.helpSteps li {
+  margin-bottom: 20px;
+}
+
+.helpSteps p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.helpSteps ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.helpSteps ul li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.helpNote {
+  background-color: #f5f5f5;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.helpTable {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.helpTableRow {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+
+.helpTableRow:last-child {
+  border-bottom: none;
+}
+
+.helpTableHeader {
+  background-color: #f0f0f0;
+  padding: 12px 15px;
+  font-weight: 700;
+  color: #333;
+  flex: 1;
+}
+
+.helpTableHeader:first-child {
+  border-right: 1px solid #ddd;
+  flex: 0.5;
+}
+
+.helpTableCell {
+  padding: 12px 15px;
+  color: #555;
+  flex: 1;
+}
+
+.helpTableCell:first-child {
+  border-right: 1px solid #ddd;
+  flex: 0.5;
+}
+
+.helpExample {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.helpExampleSection {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.helpExampleSection h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.helpExampleSection ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.helpExampleSection li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive styles for the modal */
+@media (max-width: 768px) {
+  .helpModal {
+    padding: 20px;
+  }
+  
+  .helpExample {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .helpTitle {
+    font-size: 1.5rem;
+  }
+  
+  .helpSubtitle {
+    font-size: 1rem;
   }
 } 

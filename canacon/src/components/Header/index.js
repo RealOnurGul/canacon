@@ -54,7 +54,6 @@ const Header = () => {
 
   const links = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/#services' },
     { 
       name: 'Real Estate', 
       path: '/realestate',
@@ -62,7 +61,6 @@ const Header = () => {
         { name: 'Commission Calculator', path: '/commission-calculator' }
       ]
     },
-    { name: 'Startups', path: '/#startups' },
     { name: 'Blog', path: '/blog' },
   ];
 

@@ -34,24 +34,30 @@ const RealEstate = () => {
     <section className={styles.realEstate} id="realestate" ref={sectionRef}>
       <div className={styles.container}>
         <div className={`${styles.content} ${isVisible ? styles.visible : ''}`}>
-          <h2>Realtor® optimized solutions.</h2>
+          <h2>Digital Solutions for Realtors</h2>
           <div className={styles.underline}></div>
+          <div className={styles.achievement}>
+            <span className={styles.dollarSign}>$</span>
+            <span className={styles.number}>300M+</span>
+            <span className={styles.text}>in listings</span>
+            <span className={styles.soldText}>SOLD</span>
+          </div>
           <div className={styles.features}>
             <div className={styles.feature}>
               <div className={styles.featureIcon}>🏠</div>
-              <p>A modern single property webpage</p>
+              <p>Custom property websites that convert</p>
             </div>
             <div className={styles.feature}>
               <div className={styles.featureIcon}>🎯</div>
-              <p>Specific demographic-based hyper-targeting</p>
+              <p>Targeted digital marketing campaigns</p>
             </div>
             <div className={styles.feature}>
               <div className={styles.featureIcon}>📊</div>
-              <p>Tailored marketing strategies to help listings sell fast</p>
+              <p>Marketing analytics that drive results</p>
             </div>
           </div>
           <Link to="/realestate" className={styles.button}>
-            DISCOVER MORE
+            BOOST YOUR LISTINGS
           </Link>
         </div>
         <div className={`${styles.image} ${isVisible ? styles.visible : ''}`}>

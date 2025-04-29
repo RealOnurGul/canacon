@@ -1,36 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaBuilding, FaMapMarkerAlt, FaUserTie, FaHome, FaHandshake, FaChartLine } from 'react-icons/fa';
-import { MdSecurity, MdLocationCity, MdGroups } from 'react-icons/md';
+import { FaHome, FaChartLine } from 'react-icons/fa';
+import { MdLocationCity, MdGroups, MdWeb, MdCampaign, MdAnalytics } from 'react-icons/md';
 import styles from './RealEstate.module.css';
 
 const RealEstate = () => {
   const [sectionsVisible, setSectionsVisible] = useState({
+    hero: false,
     whyChoose: false,
     services: false,
-    highlight: false,
     cta: false,
   });
 
   // Refs for each section
+  const heroRef = useRef(null);
   const whyChooseRef = useRef(null);
   const servicesRef = useRef(null);
-  const highlightRef = useRef(null);
   const ctaRef = useRef(null);
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.3,
+      threshold: 0.2,
     };
 
     const observerCallback = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target === whyChooseRef.current) {
+          if (entry.target === heroRef.current) {
+            setSectionsVisible(prev => ({ ...prev, hero: true }));
+          } else if (entry.target === whyChooseRef.current) {
             setSectionsVisible(prev => ({ ...prev, whyChoose: true }));
           } else if (entry.target === servicesRef.current) {
             setSectionsVisible(prev => ({ ...prev, services: true }));
-          } else if (entry.target === highlightRef.current) {
-            setSectionsVisible(prev => ({ ...prev, highlight: true }));
           } else if (entry.target === ctaRef.current) {
             setSectionsVisible(prev => ({ ...prev, cta: true }));
           }
@@ -40,20 +40,21 @@ const RealEstate = () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     
+    // Store current ref values to avoid issues in cleanup
+    const heroElement = heroRef.current;
     const whyChooseElement = whyChooseRef.current;
     const servicesElement = servicesRef.current;
-    const highlightElement = highlightRef.current;
     const ctaElement = ctaRef.current;
     
+    if (heroElement) observer.observe(heroElement);
     if (whyChooseElement) observer.observe(whyChooseElement);
     if (servicesElement) observer.observe(servicesElement);
-    if (highlightElement) observer.observe(highlightElement);
     if (ctaElement) observer.observe(ctaElement);
 
     return () => {
+      if (heroElement) observer.unobserve(heroElement);
       if (whyChooseElement) observer.unobserve(whyChooseElement);
       if (servicesElement) observer.unobserve(servicesElement);
-      if (highlightElement) observer.unobserve(highlightElement);
       if (ctaElement) observer.unobserve(ctaElement);
     };
   }, []);
@@ -61,12 +62,18 @@ const RealEstate = () => {
   return (
     <div className={styles.realEstate}>
       {/* Hero Section */}
-      <section className={styles.heroSection}>
+      <section className={styles.heroSection} ref={heroRef}>
         <div className={styles.heroOverlay}></div>
-        <div className={styles.heroContainer}>
-          <h1 className={styles.heroTitle}>Real Estate Excellence</h1>
-          <p className={styles.heroSubtext}>We've helped clients buy and sell over $300M in real estate properties, creating value and exceeding expectations.</p>
-          <a href="/contact" className={styles.heroButton}>Get Started</a>
+        <div className={`${styles.heroContainer} ${sectionsVisible.hero ? styles.visible : ''}`}>
+          <h1 className={styles.heroTitle}>Realtor Web Solutions</h1>
+          <div className={styles.heroHighlight}>
+            <span className={styles.dollarSymbol}>$</span>
+            <span className={styles.numberHighlight}>300</span>
+            <span className={styles.million}>MILLION+</span>
+            <span className={styles.sold}>SOLD</span>
+          </div>
+          <p className={styles.heroSubtext}>In successful listings powered by our digital marketing & web development for real estate professionals</p>
+          <a href="/contact" className={styles.heroButton}>Elevate Your Real Estate Business</a>
         </div>
       </section>
 
@@ -74,25 +81,25 @@ const RealEstate = () => {
       <section className={styles.whyChooseSection} ref={whyChooseRef}>
         <div className={styles.container}>
           <div className={`${styles.content} ${sectionsVisible.whyChoose ? styles.visible : ''}`}>
-            <h2 className={styles.sectionTitle}>Why Choose Us</h2>
+            <h2 className={styles.sectionTitle}>Why Realtors Choose Us</h2>
             <div className={styles.underline}></div>
-            <p className={styles.sectionText}>We combine industry expertise, deep market knowledge, and personalized service to deliver exceptional results for our clients.</p>
+            <p className={styles.sectionText}>We specialize in helping real estate professionals showcase properties, attract clients, and close more deals through strategic digital marketing and custom web solutions.</p>
             <div className={styles.bulletPoints}>
               <div className={styles.bulletPoint}>
-                <FaChartLine className={styles.checkIcon} />
-                <span>Market Analysis Experts with comprehensive expertise</span>
+                <MdWeb className={styles.checkIcon} />
+                <span>Custom Property Websites that showcase listings beautifully</span>
               </div>
               <div className={styles.bulletPoint}>
-                <FaHandshake className={styles.checkIcon} />
-                <span>Personalized Service tailored to your unique needs</span>
+                <MdCampaign className={styles.checkIcon} />
+                <span>Targeted Digital Campaigns to reach qualified buyers</span>
+              </div>
+              <div className={styles.bulletPoint}>
+                <MdAnalytics className={styles.checkIcon} />
+                <span>Performance Analytics to track and optimize results</span>
               </div>
               <div className={styles.bulletPoint}>
                 <MdGroups className={styles.checkIcon} />
-                <span>Dedicated Team of professionals working for you</span>
-              </div>
-              <div className={styles.bulletPoint}>
-                <MdSecurity className={styles.checkIcon} />
-                <span>Transaction Security with professional oversight</span>
+                <span>Dedicated Support Team for all your marketing needs</span>
               </div>
             </div>
           </div>
@@ -105,69 +112,51 @@ const RealEstate = () => {
       {/* Services Section */}
       <section className={styles.servicesSection} ref={servicesRef}>
         <div className={styles.container}>
-          <h2 className={styles.serviceTitle}>Our Real Estate Services</h2>
+          <h2 className={styles.serviceTitle}>Digital Marketing for Realtors</h2>
           <div className={styles.underline}></div>
           <div className={`${styles.servicesGrid} ${sectionsVisible.services ? styles.visible : ''}`}>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>
                 <FaHome />
               </div>
-              <h3>Residential Sales</h3>
-              <p>Expert guidance for selling your home at the best possible price with strategic marketing and negotiation.</p>
+              <h3>Property Websites</h3>
+              <p>Custom single-property websites that showcase your listings with beautiful imagery, virtual tours, and neighborhood information.</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>
-                <FaUserTie />
+                <MdWeb />
               </div>
-              <h3>Buyer Representation</h3>
-              <p>Finding your dream home with personalized property searches and strong negotiation strategies.</p>
+              <h3>Realtor Websites</h3>
+              <p>Professional, branded websites that highlight your expertise, listings, and services to attract new clients and build your reputation.</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>
-                <FaBuilding />
+                <MdCampaign />
               </div>
-              <h3>Investment Properties</h3>
-              <p>Identifying lucrative investment opportunities with thorough market analysis and financial projections.</p>
+              <h3>Digital Advertising</h3>
+              <p>Targeted ad campaigns on social media and search engines to reach potential buyers in your target demographic and area.</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>
                 <MdLocationCity />
               </div>
-              <h3>Commercial Real Estate</h3>
-              <p>Comprehensive commercial property services for businesses looking to lease, buy, or sell space.</p>
+              <h3>Virtual Tours</h3>
+              <p>Immersive 3D virtual tours that give potential buyers a realistic feel for properties from the comfort of their homes.</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>
-                <FaMapMarkerAlt />
+                <FaChartLine />
               </div>
-              <h3>Property Management</h3>
-              <p>Full-service management solutions for property owners, handling everything from tenant screening to maintenance.</p>
+              <h3>SEO & Content</h3>
+              <p>Search engine optimization and content creation to boost your visibility and establish you as a local real estate authority.</p>
             </div>
             <div className={styles.serviceCard}>
               <div className={styles.serviceIcon}>
-                <FaHandshake />
+                <MdAnalytics />
               </div>
-              <h3>Real Estate Consulting</h3>
-              <p>Strategic advice and insights on market trends, property valuation, and investment decision-making.</p>
+              <h3>Marketing Analytics</h3>
+              <p>Comprehensive reporting and analytics to track performance and continuously optimize your digital marketing efforts.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Highlight Section */}
-      <section className={styles.highlightSection} ref={highlightRef}>
-        <div className={`${styles.container} ${sectionsVisible.highlight ? styles.visible : ''}`}>
-          <div className={styles.highlightContent}>
-            <h2 className={styles.highlightTitle}>$300M+ in Real Estate Success</h2>
-            <div className={styles.highlightUnderline}></div>
-            <p className={styles.highlightText}>Our team has facilitated over $300 million in successful real estate transactions. We understand local market dynamics and leverage our expertise to maximize value for our clients.</p>
-            <div className={styles.caseStudy}>
-              <span className={styles.caseStudyBadge}>SUCCESS STORY</span>
-              <p className={styles.caseStudyText}>"Canacon helped us sell our property for 15% above asking price in just 11 days. Their market knowledge and negotiation skills exceeded our expectations."</p>
-            </div>
-          </div>
-          <div className={styles.image}>
-            <div className={styles.soldSigns}></div>
           </div>
         </div>
       </section>
@@ -175,9 +164,9 @@ const RealEstate = () => {
       {/* CTA Section */}
       <section className={styles.ctaSection} ref={ctaRef}>
         <div className={`${styles.container} ${sectionsVisible.cta ? styles.visible : ''}`}>
-          <h2 className={styles.ctaTitle}>Ready to Make Your Move?</h2>
-          <p className={styles.ctaText}>Whether you're buying, selling, or investing, our team is ready to help you achieve your real estate goals. Contact us today to schedule a consultation.</p>
-          <a href="/contact" className={styles.ctaButton}>Contact Us Now</a>
+          <h2 className={styles.ctaTitle}>Ready to Boost Your Real Estate Business?</h2>
+          <p className={styles.ctaText}>Join the hundreds of successful realtors who trust us with their digital marketing. Contact us today to discuss how we can help you showcase properties and close more deals.</p>
+          <a href="/contact" className={styles.ctaButton}>Schedule a Free Consultation</a>
         </div>
       </section>
     </div>

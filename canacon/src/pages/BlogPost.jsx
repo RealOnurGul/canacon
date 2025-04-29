@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import styles from "./BlogPost.module.css";
+import logoImage from "../assets/images/canacon_square_logo.png";
 
 // Sample blog data
 const blogPosts = [
@@ -68,12 +69,12 @@ const blogPosts = [
     `,
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
     category: 'Real Estate',
-    date: 'August 15, 2023',
+    date: 'March 15, 2025',
     readTime: 6,
     author: {
-      name: 'Sarah Williams',
-      avatar: 'https://randomuser.me/api/portraits/women/33.jpg',
-      bio: 'Sarah is a real estate analyst with over 10 years of experience tracking market trends and advising property investors.'
+      name: 'Onur Gul',
+      avatar: logoImage,
+      bio: 'Founder & CEO of Canacon Media with expertise in web development, marketing, and real estate technology solutions.'
     }
   },
   {
@@ -158,12 +159,12 @@ const blogPosts = [
     `,
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
     category: 'SEO',
-    date: 'September 3, 2023',
+    date: 'April 3, 2025',
     readTime: 7,
     author: {
-      name: 'Mike Johnson',
-      avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-      bio: 'Mike is an SEO specialist with expertise in technical optimization and structured data implementation.'
+      name: 'Onur Gul',
+      avatar: logoImage,
+      bio: 'Founder & CEO of Canacon Media with expertise in web development, marketing, and real estate technology solutions.'
     }
   },
   {
@@ -237,12 +238,12 @@ const blogPosts = [
     `,
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
     category: 'Web Development',
-    date: 'October 12, 2023',
+    date: 'May 12, 2025',
     readTime: 8,
     author: {
-      name: 'Alex Chen',
-      avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
-      bio: 'Alex is a senior web developer specializing in AI integration and emerging technologies.'
+      name: 'Onur Gul',
+      avatar: logoImage,
+      bio: 'Founder & CEO of Canacon Media with expertise in web development, marketing, and real estate technology solutions.'
     }
   },
   {
@@ -355,14 +356,14 @@ const blogPosts = [
       
       <p>As virtual tour technology becomes more sophisticated and accessible, it's transitioning from a competitive advantage to an expected standard in real estate marketing. Agents and brokerages who master these tools now will be well-positioned as the market continues to embrace digital-first property exploration.</p>
     `,
-    image: "https://images.unsplash.com/photo-1534445967719-8ae7b972e1c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
     category: 'Real Estate',
-    date: 'November 5, 2023',
+    date: 'June 5, 2025',
     readTime: 7,
     author: {
-      name: 'Emma Thompson',
-      avatar: 'https://randomuser.me/api/portraits/women/24.jpg',
-      bio: 'Emma is a real estate marketing consultant specializing in digital innovations and virtual property presentation.'
+      name: 'Onur Gul',
+      avatar: logoImage,
+      bio: 'Founder & CEO of Canacon Media with expertise in web development, marketing, and real estate technology solutions.'
     }
   },
   {
@@ -488,12 +489,12 @@ const blogPosts = [
     `,
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
     category: 'Web Development',
-    date: 'December 1, 2023',
+    date: 'July 1, 2025',
     readTime: 8,
     author: {
-      name: 'Jason Miller',
-      avatar: 'https://randomuser.me/api/portraits/men/48.jpg',
-      bio: 'Jason is a frontend developer and UI/UX specialist focusing on responsive design and performance optimization.'
+      name: 'Onur Gul',
+      avatar: logoImage,
+      bio: 'Founder & CEO of Canacon Media with expertise in web development, marketing, and real estate technology solutions.'
     }
   }
 ];
@@ -527,14 +528,16 @@ const BlogPost = () => {
           style={{ backgroundImage: `url(${post.image})` }}
         >
           <div className={styles.heroOverlay}></div>
-          </div>
+        </div>
         
         <div className={styles.container}>
-          <Link to="/blog" className={styles.backLink}>
-            ← Back to Blog
-          </Link>
+          <div className={styles.navigation}>
+            <Link to="/blog" className={styles.backLink}>
+              ← BACK TO BLOG POSTS
+            </Link>
+          </div>
           
-            <div className={styles.postHeader}>
+          <div className={styles.postHeader}>
             <div className={styles.postMeta}>
               <span className={styles.postCategory}>{post.category}</span>
               <span className={styles.postDate}>{post.date}</span>
@@ -545,14 +548,17 @@ const BlogPost = () => {
             
             <div className={styles.authorInfo}>
               <img 
-                src={post.author.avatar} 
-                alt={post.author.name} 
+                src={logoImage} 
+                alt="Canacon Media" 
                 className={styles.authorAvatar}
               />
-              <span className={styles.authorName}>By {post.author.name}</span>
+              <div className={styles.authorDetails}>
+                <span className={styles.authorName}>By {post.author.name}</span>
+                <span className={styles.authorRole}>Founder & CEO of Canacon Media</span>
               </div>
             </div>
           </div>
+        </div>
       </div>
         
       <div className={styles.postContent}>
@@ -565,8 +571,8 @@ const BlogPost = () => {
           <div className={styles.postFooter}>
             <div className={styles.authorBio}>
               <img 
-                src={post.author.avatar} 
-                alt={post.author.name} 
+                src={logoImage} 
+                alt="Canacon Media" 
                 className={styles.authorAvatarLarge}
               />
             <div className={styles.bioContent}>
@@ -578,13 +584,13 @@ const BlogPost = () => {
             <div className={styles.socialShare}>
               <span className={styles.shareLabel}>Share:</span>
               <div className={styles.shareButtons}>
-                <a href="https://twitter.com/share" className={styles.shareButton}>
+                <a href={`https://twitter.com/intent/tweet?url=https://canacon.com/blog/${post.slug}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" className={styles.shareButton}>
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="https://facebook.com/sharer" className={styles.shareButton}>
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=https://canacon.com/blog/${post.slug}`} target="_blank" rel="noopener noreferrer" className={styles.shareButton}>
                   <i className="fab fa-facebook"></i>
                 </a>
-                <a href="https://linkedin.com/sharing" className={styles.shareButton}>
+                <a href={`https://www.linkedin.com/shareArticle?mini=true&url=https://canacon.com/blog/${post.slug}&title=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" className={styles.shareButton}>
                   <i className="fab fa-linkedin"></i>
                 </a>
               </div>

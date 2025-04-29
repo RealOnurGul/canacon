@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./BlogPage.module.css";
+import logoImage from "../../assets/images/canacon_square_logo.png";
 
 const BlogPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,12 +18,12 @@ const BlogPage = () => {
       id: 1,
       title: "5 Emerging Real Estate Trends in 2023",
       excerpt: "Discover the top five real estate trends shaping the market this year, from sustainable building practices to the rise of smart home technology integration.",
-      date: "August 15, 2023",
+      date: "March 15, 2025",
       category: "Real Estate",
       image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
       author: {
-        name: "Sarah Williams",
-        avatar: "https://randomuser.me/api/portraits/women/33.jpg"
+        name: "Onur Gul",
+        avatar: logoImage
       },
       slug: "emerging-real-estate-trends-2023"
     },
@@ -31,12 +32,12 @@ const BlogPage = () => {
       title: "How Microdata Can Boost Your Website's SEO",
       slug: "microdata-boost-website-seo",
       excerpt: "Learn how implementing structured data and microdata can significantly improve your website's search engine visibility and click-through rates.",
-      date: "September 3, 2023",
+      date: "April 3, 2025",
       category: "SEO",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
       author: {
-        name: "Mike Johnson",
-        avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+        name: "Onur Gul",
+        avatar: logoImage
       }
     },
     {
@@ -44,12 +45,12 @@ const BlogPage = () => {
       title: "The Impact of AI on Modern Web Development",
       slug: "ai-impact-modern-web-development",
       excerpt: "Explore how artificial intelligence is revolutionizing web development, from automated testing to personalized user experiences and smart content creation.",
-      date: "October 12, 2023",
+      date: "May 12, 2025",
       category: "Web Development",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
       author: {
-        name: "Alex Chen",
-        avatar: "https://randomuser.me/api/portraits/men/45.jpg"
+        name: "Onur Gul",
+        avatar: logoImage
       }
     },
     {
@@ -57,12 +58,12 @@ const BlogPage = () => {
       title: "Virtual Tours: Transforming Real Estate Marketing",
       slug: "virtual-tours-real-estate-marketing",
       excerpt: "Discover how virtual tour technology is changing how properties are marketed and sold, offering immersive experiences for potential buyers regardless of location.",
-      date: "November 5, 2023",
+      date: "June 5, 2025",
       category: "Real Estate",
-      image: "https://images.unsplash.com/photo-1534445967719-8ae7b972e1c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
       author: {
-        name: "Emma Thompson",
-        avatar: "https://randomuser.me/api/portraits/women/24.jpg"
+        name: "Onur Gul",
+        avatar: logoImage
       }
     },
     {
@@ -70,12 +71,12 @@ const BlogPage = () => {
       title: "Responsive Design Best Practices for 2023",
       slug: "responsive-design-best-practices-2023",
       excerpt: "Learn the latest responsive design techniques to ensure your website provides an optimal viewing experience across all devices and screen sizes.",
-      date: "December 1, 2023",
+      date: "July 1, 2025",
       category: "Web Development",
       image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
       author: {
-        name: "Jason Miller",
-        avatar: "https://randomuser.me/api/portraits/men/48.jpg"
+        name: "Onur Gul",
+        avatar: logoImage
       }
     }
   ];
