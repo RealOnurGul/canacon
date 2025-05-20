@@ -10,7 +10,6 @@ const CommissionCalculator = () => {
 
   // Visibility state for animation
   const [isHeroVisible, setIsHeroVisible] = useState(false);
-  const [isCalculatorVisible, setIsCalculatorVisible] = useState(false);
   const [isFaqVisible, setIsFaqVisible] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   
@@ -42,9 +41,6 @@ const CommissionCalculator = () => {
   const calculatorRef = useRef(null);
   const faqRef = useRef(null);
   const modalRef = useRef(null);
-  
-  // Commission tiers for the slider
-  const commissionTiers = [5, 5.5, 6, 6.5, 7, 7.5, 8];
   
   useEffect(() => {
     if (inView) {
@@ -247,7 +243,7 @@ const CommissionCalculator = () => {
     const calculatorObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsCalculatorVisible(true);
+          // Animation logic can go here without state
         }
       },
       { threshold: 0.1 }
