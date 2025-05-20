@@ -67,9 +67,11 @@ const RealEstate = () => {
         <div className={`${styles.heroContainer} ${sectionsVisible.hero ? styles.visible : ''}`}>
           <h1 className={styles.heroTitle}>Realtor Web Solutions</h1>
           <div className={styles.heroHighlight}>
-            <span className={styles.dollarSymbol}>$</span>
-            <span className={styles.numberHighlight}>300</span>
-            <span className={styles.million}>MILLION+</span>
+            <div className={styles.amountWrapper}>
+              <span className={styles.dollarSymbol}>$</span>
+              <span className={styles.numberHighlight}>300</span>
+              <span className={styles.million}>MILLION+</span>
+            </div>
             <span className={styles.sold}>SOLD</span>
           </div>
           <p className={styles.heroSubtext}>In successful listings powered by our digital marketing & web development for real estate professionals</p>

@@ -589,7 +589,18 @@
     gap: 10px;
   }
   
-  .inputWrapper input,
+  .inputWrapper input {
+    font-size: 1rem;
+    padding: 12px 12px 12px 40px;
+  }
+  
+  .currencySymbol {
+    font-size: 1rem;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
   .inputWrapperSmall input {
     font-size: 1rem;
     padding: 12px;

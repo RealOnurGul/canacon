@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import styles from './CommissionCalculator.module.css';
 import logo from '../assets/images/canacon_square_logo.png';
 
 const CommissionCalculator = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.2 });
+
   // Visibility state for animation
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isCalculatorVisible, setIsCalculatorVisible] = useState(false);
@@ -14,7 +19,7 @@ const CommissionCalculator = () => {
     offerPrice: '',
     firstCommission: '7',
     remainderCommission: '2.5',
-    firstCoopSplit: '3.22',
+    firstCoopSplit: '3',
     remainderCoopSplit: '1.15',
     firstCommissionTouched: false,
     remainderCommissionTouched: false,
@@ -38,6 +43,15 @@ const CommissionCalculator = () => {
   const faqRef = useRef(null);
   const modalRef = useRef(null);
   
+  // Commission tiers for the slider
+  const commissionTiers = [5, 5.5, 6, 6.5, 7, 7.5, 8];
+  
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
   // Format currency with dollar sign
   const formatCurrency = (value) => {
     if (!value && value !== 0) return '';
@@ -132,7 +146,7 @@ const CommissionCalculator = () => {
     ) / 100 || 0;
     
     const firstCoopSplit = parseFloat(
-      data.firstCoopSplitTouched ? data.firstCoopSplit : '3.22'
+      data.firstCoopSplitTouched ? data.firstCoopSplit : '3'
     ) / 100 || 0;
     
     const remainderCoopSplit = parseFloat(
@@ -182,7 +196,7 @@ const CommissionCalculator = () => {
       offerPrice: '',
       firstCommission: '7',
       remainderCommission: '2.5',
-      firstCoopSplit: '3.22',
+      firstCoopSplit: '3',
       remainderCoopSplit: '1.15',
       firstCommissionTouched: false,
       remainderCommissionTouched: false,
@@ -398,17 +412,38 @@ const CommissionCalculator = () => {
       <section ref={heroRef} className={styles.heroSection}>
         <div className={styles.heroOverlay}></div>
         <div className={`${styles.heroContent} ${isHeroVisible ? styles.visible : ''}`}>
-          <h1 className={styles.heroTitle}>BC Real Estate Commission Calculator</h1>
-          <p className={styles.heroSubtitle}>
-            Calculate commission splits for British Columbia real estate transactions
-          </p>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className={styles.heroTitle}
+          >
+            Real Estate Commission Calculator
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className={styles.heroSubtitle}
+          >
+            Estimate your commission quickly and accurately
+          </motion.p>
         </div>
       </section>
       
       {/* Calculator Section */}
       <section ref={calculatorRef} className={styles.calculatorSection}>
         <div className={styles.container}>
-          <div className={`${styles.calculatorContent} ${isCalculatorVisible ? styles.visible : ''}`}>
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate={controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+              hidden: { opacity: 0, y: 50 }
+            }}
+            className={styles.calculatorWrapper}
+          >
             <div className={styles.calculatorCard}>
               <div className={styles.calculatorHeader}>
                 <img src={logo} alt="CANACON Logo" className={styles.calculatorLogo} />
@@ -434,7 +469,7 @@ const CommissionCalculator = () => {
                         type="text"
                         value={formData.offerPrice}
                         onChange={handleInputChange}
-                        placeholder="828,888.00"
+                        placeholder="778,888.00"
                       />
                     </div>
                   </div>
@@ -478,9 +513,9 @@ const CommissionCalculator = () => {
                           id="firstCoopSplit"
                           name="firstCoopSplit"
                           type="text"
-                          value={formData.firstCoopSplit === '3.22' && !formData.firstCoopSplitTouched ? '' : formData.firstCoopSplit}
+                          value={formData.firstCoopSplit === '3' && !formData.firstCoopSplitTouched ? '' : formData.firstCoopSplit}
                           onChange={handleInputChange}
-                          placeholder="3.22"
+                          placeholder="3"
                         />
                         <span className={styles.percentSymbol}>%</span>
                       </div>
@@ -545,7 +580,7 @@ const CommissionCalculator = () => {
                 Note: This calculator provides estimates based on standard BC real estate commission structure. Actual commissions may vary.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
       

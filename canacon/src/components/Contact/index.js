@@ -143,8 +143,8 @@ const Contact = () => {
                 </div>
                 <h3 className={styles.infoTitle}>Office</h3>
                 <p className={styles.infoText}>
-                  123 Business Avenue<br />
-                  Vancouver, BC V1A 2B3
+    
+                  Vancouver, BC, Canada
                 </p>
               </div>
               

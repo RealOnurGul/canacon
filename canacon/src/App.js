@@ -12,12 +12,14 @@ import BlogPost from "./pages/BlogPost";
 import RealEstatePage from "./pages/RealEstate";
 import ContactPage from "./pages/Contact";
 import CommissionCalculator from "./pages/CommissionCalculator";
+import ScrollToTop from "./components/common/ScrollToTop";
 import "./styles/global.css";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <ScrollToTop />
       
       <Routes>
         <Route path="/" element={

@@ -39,30 +39,6 @@ const Hero = () => {
               Our Services
             </a>
           </div>
-          
-          <div className={styles.statsContainer}>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>
-                <span className={styles.statValueInner}>150</span>
-                <span className={styles.statSymbol}>+</span>
-              </div>
-              <div className={styles.statLabel}>Clients</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>
-                <span className={styles.statValueInner}>300</span>
-                <span className={styles.statSymbol}>+</span>
-              </div>
-              <div className={styles.statLabel}>Projects</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statValue}>
-                <span className={styles.statValueInner}>98</span>
-                <span className={styles.statSymbol}>%</span>
-              </div>
-              <div className={styles.statLabel}>Satisfaction</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

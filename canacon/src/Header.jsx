@@ -5,6 +5,7 @@ import classes from "./Header.module.css";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [realEstateOpen, setRealEstateOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,12 +21,34 @@ const Header = () => {
     };
   }, [scrolled]);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    // Reset RE submenu when main menu is toggled
+    if (!isOpen) {
+      setRealEstateOpen(false);
+    }
   };
 
   const closeMenu = () => {
     setIsOpen(false);
+    setRealEstateOpen(false);
+  };
+
+  const toggleRealEstate = (e) => {
+    e.preventDefault();
+    setRealEstateOpen(!realEstateOpen);
   };
 
   const headerClasses = `${classes.header} ${scrolled ? classes.scrolled : ""}`;
@@ -47,14 +70,33 @@ const Header = () => {
         </div>
 
         <nav className={navClasses}>
-          <ul className={classes.navLinks}>
-            <li><a href="/#home" onClick={closeMenu}>Home</a></li>
-            <li><a href="/#about" onClick={closeMenu}>About</a></li>
-            <li><a href="/#services" onClick={closeMenu}>Services</a></li>
-            <li><a href="/#portfolio" onClick={closeMenu}>Portfolio</a></li>
-            <li><a href="/#contact" onClick={closeMenu}>Contact</a></li>
-            <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
-          </ul>
+          <div className={classes.mobileNavContainer}>
+            <div className={classes.navRow}>
+              <ul className={classes.navLinks}>
+                <li><a href="/#home" onClick={closeMenu}>Home</a></li>
+                <li><a href="/#about" onClick={closeMenu}>About</a></li>
+                <li><a href="/#services" onClick={closeMenu}>Services</a></li>
+                <li><a href="/#portfolio" onClick={closeMenu}>Portfolio</a></li>
+              </ul>
+            </div>
+            
+            <div className={classes.navRow}>
+              <ul className={classes.navLinks}>
+                <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
+                <li className={classes.hasSubmenu}>
+                  <a href="#" className={classes.submenuToggle} onClick={toggleRealEstate}>
+                    Real Estate 
+                    <span className={`${classes.dropdownArrow} ${realEstateOpen ? classes.open : ''}`}>▼</span>
+                  </a>
+                  <ul className={`${classes.submenu} ${realEstateOpen ? classes.open : ''}`}>
+                    <li><Link to="/realestate" onClick={closeMenu}>Real Estate Home</Link></li>
+                    <li><Link to="/commission-calculator" onClick={closeMenu}>Commission Calculator</Link></li>
+                  </ul>
+                </li>
+                <li><a href="/#contact" onClick={closeMenu}>Contact</a></li>
+              </ul>
+            </div>
+          </div>
         </nav>
       </div>
     </header>

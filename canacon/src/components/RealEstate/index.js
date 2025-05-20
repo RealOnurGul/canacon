@@ -37,10 +37,12 @@ const RealEstate = () => {
           <h2>Digital Solutions for Realtors</h2>
           <div className={styles.underline}></div>
           <div className={styles.achievement}>
-            <span className={styles.dollarSign}>$</span>
-            <span className={styles.number}>300M+</span>
-            <span className={styles.text}>in listings</span>
-            <span className={styles.soldText}>SOLD</span>
+            <div className={styles.moneyLine}>
+              <span className={styles.dollarSign}>$</span>
+              <span className={styles.number}>300M+</span>
+              <span className={styles.inText}>in listings</span>
+              <span className={styles.soldText}>SOLD</span>
+            </div>
           </div>
           <div className={styles.features}>
             <div className={styles.feature}>
