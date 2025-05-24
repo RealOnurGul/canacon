@@ -17,8 +17,8 @@ const CommissionCalculator = () => {
   const [formData, setFormData] = useState({
     offerPrice: '',
     firstCommission: '7',
-    remainderCommission: '2.5',
-    firstCoopSplit: '3',
+    remainderCommission: '3',
+    firstCoopSplit: '3.22',
     remainderCoopSplit: '1.15',
     firstCommissionTouched: false,
     remainderCommissionTouched: false,
@@ -138,11 +138,11 @@ const CommissionCalculator = () => {
     ) / 100 || 0;
     
     const remainderCommission = parseFloat(
-      data.remainderCommissionTouched ? data.remainderCommission : '2.5'
+      data.remainderCommissionTouched ? data.remainderCommission : '3'
     ) / 100 || 0;
     
     const firstCoopSplit = parseFloat(
-      data.firstCoopSplitTouched ? data.firstCoopSplit : '3'
+      data.firstCoopSplitTouched ? data.firstCoopSplit : '3.22'
     ) / 100 || 0;
     
     const remainderCoopSplit = parseFloat(
@@ -191,8 +191,8 @@ const CommissionCalculator = () => {
     setFormData({
       offerPrice: '',
       firstCommission: '7',
-      remainderCommission: '2.5',
-      firstCoopSplit: '3',
+      remainderCommission: '3',
+      firstCoopSplit: '3.22',
       remainderCoopSplit: '1.15',
       firstCommissionTouched: false,
       remainderCommissionTouched: false,
@@ -331,7 +331,7 @@ const CommissionCalculator = () => {
                 <p>These two boxes represent what the total commission is:</p>
                 <ul>
                   <li>First box: the % charged on the first $100,000 of the offer price (e.g., 7%)</li>
-                  <li>Second box: the % charged on the remainder of the price (e.g., 2.5%)</li>
+                  <li>Second box: the % charged on the remainder of the price (e.g., 3%)</li>
                 </ul>
               </li>
               <li>
@@ -357,7 +357,7 @@ const CommissionCalculator = () => {
               </div>
               <div className={styles.helpTableRow}>
                 <div className={styles.helpTableCell}><strong>Gross Commission</strong></div>
-                <div className={styles.helpTableCell}>Total commission charged based on the 7% + 2.5% rule</div>
+                <div className={styles.helpTableCell}>Total commission charged based on the 7% + 3% rule</div>
               </div>
               <div className={styles.helpTableRow}>
                 <div className={styles.helpTableCell}><strong>Buyer's Agent (Co-operating Brokerage)</strong></div>
@@ -385,7 +385,7 @@ const CommissionCalculator = () => {
                 <h4>If you enter:</h4>
                 <ul>
                   <li>Offer Price: $828,888</li>
-                  <li>Total Commission Split: 7% / 2.5%</li>
+                  <li>Total Commission Split: 7% / 3%</li>
                   <li>Buyer's Agent Split: 3.22% / 1.15%</li>
                 </ul>
               </div>
@@ -491,9 +491,9 @@ const CommissionCalculator = () => {
                           id="remainderCommission"
                           name="remainderCommission"
                           type="text"
-                          value={formData.remainderCommission === '2.5' && !formData.remainderCommissionTouched ? '' : formData.remainderCommission}
+                          value={formData.remainderCommission === '3' && !formData.remainderCommissionTouched ? '' : formData.remainderCommission}
                           onChange={handleInputChange}
-                          placeholder="2.5"
+                          placeholder="3"
                         />
                         <span className={styles.percentSymbol}>%</span>
                       </div>
@@ -509,9 +509,9 @@ const CommissionCalculator = () => {
                           id="firstCoopSplit"
                           name="firstCoopSplit"
                           type="text"
-                          value={formData.firstCoopSplit === '3' && !formData.firstCoopSplitTouched ? '' : formData.firstCoopSplit}
+                          value={formData.firstCoopSplit === '3.22' && !formData.firstCoopSplitTouched ? '' : formData.firstCoopSplit}
                           onChange={handleInputChange}
-                          placeholder="3"
+                          placeholder="3.22"
                         />
                         <span className={styles.percentSymbol}>%</span>
                       </div>
@@ -589,12 +589,12 @@ const CommissionCalculator = () => {
             <div className={styles.faqGrid}>
               <div className={styles.faqItem}>
                 <h3 className={styles.faqQuestion}>How does the BC commission structure work?</h3>
-                <p className={styles.faqAnswer}>In British Columbia, real estate commissions are typically calculated using a split percentage structure. A higher percentage is applied to the first $100,000 of the sale price, and a lower percentage is applied to the remainder.</p>
+                <p className={styles.faqAnswer}>In British Columbia, real estate commissions are typically calculated using a split percentage structure. A higher percentage is applied to the first $100,000 of the sale price (7%), and a lower percentage is applied to the remainder (3%).</p>
               </div>
               
               <div className={styles.faqItem}>
                 <h3 className={styles.faqQuestion}>What is the co-operating split?</h3>
-                <p className={styles.faqAnswer}>The co-operating split refers to how the total commission is divided between the listing brokerage (seller's realtor) and the co-operating brokerage (buyer's realtor). In BC, this split is often structured as a percentage on the first $100,000 and a different percentage on the remainder.</p>
+                <p className={styles.faqAnswer}>The co-operating split refers to how the total commission is divided between the listing brokerage (seller's realtor) and the co-operating brokerage (buyer's realtor). In BC, this split is often structured as a percentage on the first $100,000 (3.22%) and a different percentage on the remainder (1.15%).</p>
               </div>
               
               <div className={styles.faqItem}>
